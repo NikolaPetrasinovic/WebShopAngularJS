@@ -31,6 +31,13 @@ var app = angular.module("shoppingcart", ["ui.router"])
             $scope.total += cart.p_price;
         }
     }
+
+	$scope.remove_cart = function(cart){
+        if(cart){
+            $scope.carts.splice($scope.carts.indexOf(cart), 1);
+            $scope.total -= cart.p_price;
+        }
+    }
 		
 	})
 

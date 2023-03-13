@@ -61,7 +61,7 @@
 								<tr ng-repeat="cart in carts" ng-init = "setTotals(cart)">
 									<td>{{cart.p_name}}</td>
 									<td>${{cart.p_price}}</td>
-									<td><button type="button" class="btn bnt-danger">X</button></td>
+									<td><button type="button" ng-click = "remove_cart(cart)" class="btn bnt-danger">X</button></td>
 								</tr>
 								<tr>
 									<td align = "right">Total</td>
