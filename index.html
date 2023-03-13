@@ -12,7 +12,7 @@
 
 	<title>WebShop AngularJS</title>
 </head>
-<body ng-app="shoppingcart" ng-controller="shoppingCTR">
+<body ng-app="webshop" ng-controller="shopping">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">Home</a>
+						<a class="nav-link active" aria-current="page" href="home">Home</a>
 					</li>
 				</ul>
 			</div>
@@ -36,10 +36,10 @@
 				<hr style="border-top:1px groovy #ccc;">
 				<div id="product">
 					<div id="p_list" ng-repeat="product in products">
-						<span style="font-size:16px;">{{product.p_name}}</span>
-						<center><img id="img" ng-src="{{product.p_image}}"></center>
-						<div><label style="font-size:14px;">Price: ${{product.p_price}}</label></div>
-						<center><button type="button" class="btn btn-primary" ng-click="add_cart(product)">Add to cart</button></center>
+						<span style="font-size:16px;">{{product.name}}</span>
+						<center><img id="img" ng-src="{{product.image}}"></center>
+						<div><label style="font-size:14px;">Price: ${{product.price}}</label></div>
+						<center><button type="button" class="btn btn-primary" ng-click="addtoCart(product)">Add to cart</button></center>
 					</div>
 				</div>
 			</div>
@@ -58,9 +58,9 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="cart in carts" ng-init = "setTotals(cart)">
-									<td>{{cart.p_name}}</td>
-									<td>${{cart.p_price}}</td>
+								<tr ng-repeat="product in cart" ng-init = "countTotals(cart)">
+									<td>{{product.name}}</td>
+									<td>${{product.price}}</td>
 									<td><button type="button" ng-click = "remove_cart(cart)" class="btn bnt-danger">X</button></td>
 								</tr>
 								<tr>

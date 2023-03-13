@@ -1,4 +1,4 @@
-var app = angular.module("shoppingcart", ["ui.router"])
+var app = angular.module("webshop", ["ui.router"])
 	.config(function($stateProvider) {
 	$stateProvider
 		.state("ProductDetails", {
@@ -7,26 +7,23 @@ var app = angular.module("shoppingcart", ["ui.router"])
 			controller: "productDetailsController",
 			controllerAs: "productDetailsCtrl"
 		})	
-		
+
 	})
 
-.controller("shoppingCTR", function($scope){
-			$scope.carts=[];
-			$scope.products = [
-				{p_id : "1", p_name: "Nike AirMax 270", p_image: "img/1.jpg", p_price: 150},
-				{p_id : "2", p_name: "Backpack", p_image: "img/2.jpg", p_price: 100},
-				{p_id : "3", p_name: "Galaxy Fold Z", p_image: "img/3.jpg", p_price: 900},
-			];
+.controller("shopping", function($scope,$http){
+		 	$scope.cart=[];
+			$http.get("http://localhost:3000/products")
+                .then(function(response){
+                  $scope.products = response.data;
+                });
 		
 
-		$scope.add_cart = function(product){
-			if(product){
-				$scope.carts.push({p_id: product.p_id, p_name: product.p_name, p_price: product.p_price});
-			}
+		$scope.addtoCart = function(product){
+				$scope.cart.push(product);
 		}
 
 		$scope.total = 0;
-    	$scope.setTotals = function(cart){
+    	$scope.countTotals = function(cart){
         if(cart){
             $scope.total += cart.p_price;
         }

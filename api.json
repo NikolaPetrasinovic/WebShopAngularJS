@@ -1,0 +1,31 @@
+{
+    "products": [
+        {
+            "id": 1, "name": "AirMax", "image": "./img/1.jpg", "price": 150
+        },
+        {
+           "id": 2, "name": "Backpack", "image": "./img/2.jpg", "price": 100
+        },
+        {
+            "id": 3, "name": "Galaxy Fold Z", "image": "./img/3.jpg", "price": 900
+        },
+        {
+            "id": 4, "name": "Tom", "image": "./img/4.jpg", "price": "New York'"
+        },
+        {
+            "id": 5, "name": "Pam", "image": "./img/5.jpg", "price": "Los Angeles"
+        },
+        {
+            "id": 6, "name": "Catherine", "image": "./img/6.jpg", "price": "Chicago"
+        },
+        {
+            "id": 7, "name": "Mary", "image": "./img/7.jpg", "price": "Houston"
+        },
+        {
+            "id": 8, "name": "Mike", "image": "./img/8.jpg", "price": "Phoenix"
+        },
+        {
+            "id": 9, "name": "Rosie", "image": "./img/9.jpg", "price": "Manchester"
+        }
+    ]
+}
