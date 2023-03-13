@@ -13,9 +13,9 @@ var app = angular.module("shoppingcart", ["ui.router"])
 .controller("shoppingCTR", function($scope){
 			$scope.carts=[];
 			$scope.products = [
-				{p_id : "1", p_name: "Nike AirMax 270", p_image: "img/1.jpg", p_price: 500},
-				{p_id : "2", p_name: "Backpack", p_image: "img/2.jpg", p_price: 500},
-				{p_id : "3", p_name: "Galaxy Fold Z", p_image: "img/3.jpg", p_price: 500},
+				{p_id : "1", p_name: "Nike AirMax 270", p_image: "img/1.jpg", p_price: 150},
+				{p_id : "2", p_name: "Backpack", p_image: "img/2.jpg", p_price: 100},
+				{p_id : "3", p_name: "Galaxy Fold Z", p_image: "img/3.jpg", p_price: 900},
 			];
 		
 
@@ -24,6 +24,13 @@ var app = angular.module("shoppingcart", ["ui.router"])
 				$scope.carts.push({p_id: product.p_id, p_name: product.p_name, p_price: product.p_price});
 			}
 		}
+
+		$scope.total = 0;
+    	$scope.setTotals = function(cart){
+        if(cart){
+            $scope.total += cart.p_price;
+        }
+    }
 		
 	})
 
