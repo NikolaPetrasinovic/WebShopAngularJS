@@ -1,0 +1,49 @@
+<div class="container">
+		<div class="row">
+			<h3 class="text-primary">AngularJS Web Shop</h3>
+			<hr style="border-top:1px dotted #ccc;">
+			<div id="bg-background" class="col-8">
+				<h4>PRODUCTS</h4>
+				<hr style="border-top:1px groovy #ccc;">
+				<div id="product">
+					<div id="p_list" ng-repeat="product in homeCtrl.products">
+						<span style="font-size:16px;" ui-sref="ProductDetails">{{product.name}}</span>
+						<center><img id="img"  ui-sref="ProductDetails" ng-src="{{product.image}}"></center>
+						<div><label style="font-size:14px;">Price: ${{product.price}}</label></div>
+						<center><button type="button" id="addtocart" class="btn btn-primary" ng-click="homeCtrl.addtoCart(product)">Add to cart</button></center>
+					</div>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h5>MY CART</h5>
+					</div>
+					<div class="panel-body table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th>Price</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="product in homeCtrl.cart" ng-init = "homeCtrl.cartTotal()">
+									<td>{{product.name}}</td>
+									<td>${{product.price}}</td>
+									<td><input type="number" ng-model="product.quantity" min="1" max="100"></td>
+									<td><button type="button" ng-click = "homeCtrl.removeProduct(product)" class="btn bnt-danger">X</button></td>
+									<!-- <td>${{ product.quantity * product.price }}</td> -->
+								</tr>
+								<tr ng-init = "homeCtrl.cartTotal()">
+									<td align = "right">Total</td>
+									<td>${{homeCtrl.cartTotal()}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 	

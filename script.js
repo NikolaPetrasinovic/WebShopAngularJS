@@ -1,16 +1,24 @@
 var app = angular.module("webshop", ["ui.router"])
-	.config(function($stateProvider) {
+	.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+	$urlRouterProvider.otherwise("/home");
 	$stateProvider
-		.state("ProductDetails", {
+	.state("home", {
+		url: "/home",
+		templateUrl:"./templates/home.html",
+		controller:"homeController",
+		controllerAs: "homeCtrl"
+
+	})	
+	.state("ProductDetails", {
 			url: "/productDetails",
 			templateUrl: "./templates/productDetails.html",
 			controller: "productDetailsController",
 			controllerAs: "productDetailsCtrl"
 		})	
-
+		$locationProvider.html5Mode(true);
 	})
 
-.controller("shopping", function($http){
+.controller("homeController", function($http){
 		 	this.cart=[];
 			var vm = this
 			$http.get("http://localhost:3000/products")
@@ -22,7 +30,7 @@ var app = angular.module("webshop", ["ui.router"])
 		vm.addtoCart = function(product){
 				vm.cart.push(product);
 		}
-		
+
 		vm.cartTotal = function() {
 			var totalPrice = 0;
 			angular.forEach(vm.cart, function(product) {
@@ -34,16 +42,17 @@ var app = angular.module("webshop", ["ui.router"])
 	vm.removeProduct = function(product) {
 		var index = vm.cart.indexOf(product);
 		vm.cart.splice(index, 1);
-		product.getTotal();
+
 	  };
 		
 	})
 
-	// .controller("productDetailsController", function($scope, $routeParams){
+	// .controller("productDetailsController", function($routeParams){
+	// 	var vm = this;
 	// 	var productId = $routeParams.id;
-	// 	angular.forEach($scope.products, function(product) {
+	// 	angular.forEach(vm.products, function(product) {
 	// 		if (product.id === productId) {
-	// 		  $scope.selectedProduct = product;
+	// 		  vm.selectedProduct = product;
 	// 		}
 	// 	})
 	// })
