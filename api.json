@@ -1,31 +1,31 @@
 {
     "products": [
         {
-            "id": 1, "name": "AirMax", "image": "./img/1.jpg", "price": 150
+            "id": 1, "name": "AirMax", "image": "./img/1.jpg", "quantity": 0, "price": 150
         },
         {
-           "id": 2, "name": "Backpack", "image": "./img/2.jpg", "price": 100
+           "id": 2, "name": "Backpack", "image": "./img/2.jpg", "quantity": 0, "price": 100
         },
         {
-            "id": 3, "name": "Galaxy Fold Z", "image": "./img/3.jpg", "price": 900
+            "id": 3, "name": "Galaxy Fold Z", "image": "./img/3.jpg", "quantity": 0, "price": 900
         },
         {
-            "id": 4, "name": "Nikon camera", "image": "./img/4.jpg", "price": 1000
+            "id": 4, "name": "Nikon camera", "image": "./img/4.jpg", "quantity": 0, "price": 1000
         },
         {
-            "id": 5, "name": "Apple smartwatch", "image": "./img/5.jpg", "price": 600
+            "id": 5, "name": "Apple smartwatch", "image": "./img/5.jpg", "quantity": 0, "price": 600
         },
         {
-            "id": 6, "name": "iPhone 14", "image": "./img/6.jpg", "price": 799
+            "id": 6, "name": "iPhone 14", "image": "./img/6.jpg", "quantity": 0, "price": 799
         },
         {
-            "id": 7, "name": "Macbook air", "image": "./img/7.jpg", "price": 999
+            "id": 7, "name": "Macbook air", "image": "./img/7.jpg", "quantity": 0, "price": 999
         },
         {
-            "id": 8, "name": "Samsung smartwatch", "image": "./img/8.jpg", "price": 500
+            "id": 8, "name": "Samsung smartwatch", "image": "./img/8.jpg", "quantity": 0, "price": 500
         },
         {
-            "id": 9, "name": "Apple smartwatch 7", "image": "./img/9.jpg", "price": 650
+            "id": 9, "name": "Apple smartwatch 7", "image": "./img/9.jpg", "quantity": 0, "price": 650
         }
     ]
 }
