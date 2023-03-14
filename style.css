@@ -4,13 +4,14 @@
     border-radius:5px;
 }
 #product{
+
     padding:5px;
     clear:both;
 }
 #p_list{
     width:200px;
     max-width:200px;
-    height:260px;
+    height:300px;
     padding:5px;
     border:1px solid #000;
     float:left;
@@ -20,3 +21,13 @@
     height:150px; 
     width:150px;
 }
+/* #img:hover{
+    background-color: rgb(0, 77, 102)
+} */
+
+#inputQuantity[type="text"] {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
