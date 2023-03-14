@@ -10,22 +10,22 @@
             "id": 3, "name": "Galaxy Fold Z", "image": "./img/3.jpg", "price": 900
         },
         {
-            "id": 4, "name": "Tom", "image": "./img/4.jpg", "price": "New York'"
+            "id": 4, "name": "Nikon camera", "image": "./img/4.jpg", "price": 1000
         },
         {
-            "id": 5, "name": "Pam", "image": "./img/5.jpg", "price": "Los Angeles"
+            "id": 5, "name": "Apple smartwatch", "image": "./img/5.jpg", "price": 600
         },
         {
-            "id": 6, "name": "Catherine", "image": "./img/6.jpg", "price": "Chicago"
+            "id": 6, "name": "iPhone 14", "image": "./img/6.jpg", "price": 799
         },
         {
-            "id": 7, "name": "Mary", "image": "./img/7.jpg", "price": "Houston"
+            "id": 7, "name": "Macbook air", "image": "./img/7.jpg", "price": 999
         },
         {
-            "id": 8, "name": "Mike", "image": "./img/8.jpg", "price": "Phoenix"
+            "id": 8, "name": "Samsung smartwatch", "image": "./img/8.jpg", "price": 500
         },
         {
-            "id": 9, "name": "Rosie", "image": "./img/9.jpg", "price": "Manchester"
+            "id": 9, "name": "Apple smartwatch 7", "image": "./img/9.jpg", "price": 650
         }
     ]
 }
