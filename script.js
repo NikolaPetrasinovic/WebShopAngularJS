@@ -22,20 +22,19 @@ var app = angular.module("webshop", ["ui.router"])
 		vm.addtoCart = function(product){
 				vm.cart.push(product);
 		}
+		vm.cartTotal = function() {
+			var totalPrice = 0;
+			angular.forEach(vm.cart, function(product) {
+				totalPrice += product.price;
+			});
+			return totalPrice;
+		};
 
-		vm.total = 0;
-    	vm.countTotals = function(cart){
-        if(cart){
-            vm.total += cart.p_price;
-        }
-    }
-
-	vm.remove_cart = function(cart){
-        if(cart){
-            vm.carts.splice(vm.carts.indexOf(cart), 1);
-            vm.total -= cart.p_price;
-        }
-    }
+	vm.removeProduct = function(product) {
+		var index = vm.cart.indexOf(product);
+		vm.cart.splice(index, 1);
+		product.getTotal();
+	  };
 		
 	})
 
@@ -47,4 +46,17 @@ var app = angular.module("webshop", ["ui.router"])
 	// 		}
 	// 	})
 	// })
-
+	.controller("productDetailsController", function($http, $stateParams){
+		var vm = this;
+		
+		$http({
+			url:"http://localhost:3000/products",
+			params:{id:$stateParams.id},
+			method:"get"
+		})
+		.then(function(response){
+			
+			vm.product = response.data[0]
+			console.log(response)
+		})
+	 })

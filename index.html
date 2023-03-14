@@ -58,14 +58,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="product in shoppingCtrl.cart" ng-init = "shoppingCtrl.countTotals(cart)">
+								<tr ng-repeat="product in shoppingCtrl.cart" ng-init = "shoppingCtrl.cartTotal()">
 									<td>{{product.name}}</td>
 									<td>${{product.price}}</td>
-									<td><button type="button" ng-click = "shoppingCtrl.remove_cart(cart)" class="btn bnt-danger">X</button></td>
+									<td><button type="button" ng-click = "shoppingCtrl.removeProduct(product)" class="btn bnt-danger">X</button></td>
 								</tr>
-								<tr>
+								<tr ng-init = "shoppingCtrl.cartTotal()">
 									<td align = "right">Total</td>
-									<td>${{total}}</td>
+									<td>${{shoppingCtrl.cartTotal()}}</td>
 								</tr>
 							</tbody>
 						</table>
