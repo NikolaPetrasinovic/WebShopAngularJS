@@ -39,6 +39,7 @@
 						<span style="font-size:16px;">{{product.name}}</span>
 						<center><img id="img" ng-src="{{product.image}}"></center>
 						<div><label style="font-size:14px;">Price: ${{product.price}}</label></div>
+						<p><input type="number" ng-model="quantity" min="1" max="100"></p>
 						<center><button type="button" class="btn btn-primary" ng-click="shoppingCtrl.addtoCart(product)">Add to cart</button></center>
 					</div>
 				</div>
@@ -61,6 +62,7 @@
 								<tr ng-repeat="product in shoppingCtrl.cart" ng-init = "shoppingCtrl.cartTotal()">
 									<td>{{product.name}}</td>
 									<td>${{product.price}}</td>
+									<td><input type="number" ng-model="quantity" min="1" max="100"></td>
 									<td><button type="button" ng-click = "shoppingCtrl.removeProduct(product)" class="btn bnt-danger">X</button></td>
 								</tr>
 								<tr ng-init = "shoppingCtrl.cartTotal()">

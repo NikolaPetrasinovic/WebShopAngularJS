@@ -25,7 +25,7 @@ var app = angular.module("webshop", ["ui.router"])
 		vm.cartTotal = function() {
 			var totalPrice = 0;
 			angular.forEach(vm.cart, function(product) {
-				totalPrice += product.price;
+				totalPrice += product.price * product.quantity;
 			});
 			return totalPrice;
 		};
