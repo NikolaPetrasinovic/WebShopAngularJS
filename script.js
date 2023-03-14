@@ -10,29 +10,30 @@ var app = angular.module("webshop", ["ui.router"])
 
 	})
 
-.controller("shopping", function($scope,$http){
-		 	$scope.cart=[];
+.controller("shopping", function($http){
+		 	this.cart=[];
+			var vm = this
 			$http.get("http://localhost:3000/products")
                 .then(function(response){
-                  $scope.products = response.data;
+                  vm.products = response.data;
                 });
 		
 
-		$scope.addtoCart = function(product){
-				$scope.cart.push(product);
+		vm.addtoCart = function(product){
+				vm.cart.push(product);
 		}
 
-		$scope.total = 0;
-    	$scope.countTotals = function(cart){
+		vm.total = 0;
+    	vm.countTotals = function(cart){
         if(cart){
-            $scope.total += cart.p_price;
+            vm.total += cart.p_price;
         }
     }
 
-	$scope.remove_cart = function(cart){
+	vm.remove_cart = function(cart){
         if(cart){
-            $scope.carts.splice($scope.carts.indexOf(cart), 1);
-            $scope.total -= cart.p_price;
+            vm.carts.splice(vm.carts.indexOf(cart), 1);
+            vm.total -= cart.p_price;
         }
     }
 		

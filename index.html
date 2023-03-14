@@ -12,7 +12,7 @@
 
 	<title>WebShop AngularJS</title>
 </head>
-<body ng-app="webshop" ng-controller="shopping">
+<body ng-app="webshop" ng-controller="shopping as shoppingCtrl">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,11 +35,11 @@
 				<h4>PRODUCTS</h4>
 				<hr style="border-top:1px groovy #ccc;">
 				<div id="product">
-					<div id="p_list" ng-repeat="product in products">
+					<div id="p_list" ng-repeat="product in shoppingCtrl.products">
 						<span style="font-size:16px;">{{product.name}}</span>
 						<center><img id="img" ng-src="{{product.image}}"></center>
 						<div><label style="font-size:14px;">Price: ${{product.price}}</label></div>
-						<center><button type="button" class="btn btn-primary" ng-click="addtoCart(product)">Add to cart</button></center>
+						<center><button type="button" class="btn btn-primary" ng-click="shoppingCtrl.addtoCart(product)">Add to cart</button></center>
 					</div>
 				</div>
 			</div>
@@ -58,10 +58,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="product in cart" ng-init = "countTotals(cart)">
+								<tr ng-repeat="product in shoppingCtrl.cart" ng-init = "shoppingCtrl.countTotals(cart)">
 									<td>{{product.name}}</td>
 									<td>${{product.price}}</td>
-									<td><button type="button" ng-click = "remove_cart(cart)" class="btn bnt-danger">X</button></td>
+									<td><button type="button" ng-click = "shoppingCtrl.remove_cart(cart)" class="btn bnt-danger">X</button></td>
 								</tr>
 								<tr>
 									<td align = "right">Total</td>
