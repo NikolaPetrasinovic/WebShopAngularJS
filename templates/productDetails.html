@@ -1,4 +1,4 @@
-<h1>Product Details</h1>
+<!-- <h1>Product Details</h1>
 
 <table style="border:1px solid black">
     <tr>
@@ -21,5 +21,32 @@
         <td>price</td>
         <td>{{productDetailsCtrl.product.price}}</td>
     </tr>
-</table>
-<a ui-sref="home">Back to Product list</a>
+</table> 
+<a ui-sref="home">Back to Product list</a> -->
+ <div class="container">
+    <div class="row">
+        <h3 class="text-primary">AngularJS Web Shop</h3>
+        <hr style="border-top:1px dotted #ccc;">
+        <div id="bg-background" class="col-8">
+            <h4>PRODUCT</h4>
+            <hr style="border-top:1px groovy #ccc;">
+            <div id="product">
+                <div id="p_list">
+                    <span style="font-size:16px;">id: {{productDetailsCtrl.product.id}}</span>
+                    <br>
+                    <span style="font-size:16px;">{{productDetailsCtrl.product.name}}</span>
+                    <center><img id="img" ng-src="{{productDetailsCtrl.product.image}}"></center>
+                    <div><label style="font-size:14px;">Price: ${{productDetailsCtrl.product.price}}</label></div>
+                    <!-- <center><button type="button" id="addtocart" class="btn btn-primary" ng-click="homeCtrl.addtoCart(product)">Add to cart</button></center> -->
+                </div>
+            </div>
+        </div>
+        <a ui-sref="home">Back to Product list</a> 
+    </div>
+</div> 
+
+<!-- <li ng-repeat="product in homeCtrl.products">
+    <a ui-sref="productDetailsCtrl({id:product.id})">
+        {{product.name}}
+    </a>
+</li> -->

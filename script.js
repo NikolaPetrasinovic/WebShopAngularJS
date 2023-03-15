@@ -58,7 +58,7 @@ var app = angular.module("webshop", ["ui.router"])
 	// })
 	.controller("productDetailsController", function($http, $stateParams){
 		var vm = this;
-		
+
 		$http({
 			url:"http://localhost:3000/products",
 			params:{id:$stateParams.id},
