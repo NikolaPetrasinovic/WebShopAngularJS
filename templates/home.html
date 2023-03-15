@@ -38,7 +38,9 @@
 								</tr>
 								<tr ng-init = "homeCtrl.cartTotal()">
 									<td align = "right">Total</td>
+									
 									<td>${{homeCtrl.cartTotal()}}</td>
+									<td><button id="btn-buy" ng-click="homeCtrl.buyOrder()">Buy Now</button></td>
 								</tr>
 							</tbody>
 						</table>

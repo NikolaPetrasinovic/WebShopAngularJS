@@ -36,3 +36,18 @@
     background-color: #E6E6E6;
     width: 650px;
 }
+
+#btn-buy{
+    display:table-column;
+    margin: 1.5rem, auto 0 auto;
+    padding: 10px 10px;
+    border: none;
+    background-color: #464647;
+    color: #000000 ;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+#btn-buy:hover{
+    background-color: #4991f0
+}

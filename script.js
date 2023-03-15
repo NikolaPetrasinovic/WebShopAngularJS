@@ -18,6 +18,8 @@ var app = angular.module("webshop", ["ui.router"])
 		$locationProvider.html5Mode(true);
 	})
 
+	
+
 .controller("homeController", function($http){
 		 	this.cart=[];
 			var vm = this
@@ -44,8 +46,21 @@ var app = angular.module("webshop", ["ui.router"])
 		vm.cart.splice(index, 1);
 
 	  };
+
+	  this.buyOrder = function() {
+		var order = {
+			total: vm.cartTotal()
+		  };
+		$http.post('http://localhost:3000/products', order)
+      .then(function(response){
+		
+		alert('Order successful!');
+	  })
+	  this.cart = [];
+	}
 		
 	})
+	
 
 	// .controller("productDetailsController", function($routeParams){
 	// 	var vm = this;
@@ -70,3 +85,15 @@ var app = angular.module("webshop", ["ui.router"])
 			console.log(response)
 		})
 	 })
+
+	//  .controller('order', function() {
+	// 	var vm = this;
+	// 	this.cart = []; // initialize cart
+  
+	// 	this.buyOrder = function() {
+	// 	  // clear cart
+	// 	  this.cart = [];
+	// 	  // display success message
+	// 	  alert('Order successful!');
+	// 	};
+	//   });

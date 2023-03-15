@@ -1,31 +1,122 @@
 {
-    "products": [
-        {
-            "id": 1, "name": "AirMax", "image": "./img/1.jpg", "quantity": 1, "price": 150
-        },
-        {
-           "id": 2, "name": "Backpack", "image": "./img/2.jpg", "quantity": 1, "price": 100
-        },
-        {
-            "id": 3, "name": "Galaxy Fold Z", "image": "./img/3.jpg", "quantity": 1, "price": 900
-        },
-        {
-            "id": 4, "name": "Nikon camera", "image": "./img/4.jpg", "quantity": 1, "price": 1000
-        },
-        {
-            "id": 5, "name": "Apple smartwatch", "image": "./img/5.jpg", "quantity": 1, "price": 600
-        },
-        {
-            "id": 6, "name": "iPhone 14", "image": "./img/6.jpg", "quantity": 1, "price": 799
-        },
-        {
-            "id": 7, "name": "Macbook air", "image": "./img/7.jpg", "quantity": 1, "price": 999
-        },
-        {
-            "id": 8, "name": "Samsung smartwatch", "image": "./img/8.jpg", "quantity": 1, "price": 500
-        },
-        {
-            "id": 9, "name": "Apple smartwatch 7", "image": "./img/9.jpg", "quantity": 1, "price": 650
-        }
-    ]
+  "products": [
+    {
+      "id": 1,
+      "name": "AirMax",
+      "image": "./img/1.jpg",
+      "quantity": 1,
+      "price": 150
+    },
+    {
+      "id": 2,
+      "name": "Backpack",
+      "image": "./img/2.jpg",
+      "quantity": 1,
+      "price": 100
+    },
+    {
+      "id": 3,
+      "name": "Galaxy Fold Z",
+      "image": "./img/3.jpg",
+      "quantity": 1,
+      "price": 900
+    },
+    {
+      "id": 4,
+      "name": "Nikon camera",
+      "image": "./img/4.jpg",
+      "quantity": 1,
+      "price": 1000
+    },
+    {
+      "id": 5,
+      "name": "Apple smartwatch",
+      "image": "./img/5.jpg",
+      "quantity": 1,
+      "price": 600
+    },
+    {
+      "id": 6,
+      "name": "iPhone 14",
+      "image": "./img/6.jpg",
+      "quantity": 1,
+      "price": 799
+    },
+    {
+      "id": 7,
+      "name": "Macbook air",
+      "image": "./img/7.jpg",
+      "quantity": 1,
+      "price": 999
+    },
+    {
+      "id": 8,
+      "name": "Samsung smartwatch",
+      "image": "./img/8.jpg",
+      "quantity": 1,
+      "price": 500
+    },
+    {
+      "id": 9,
+      "name": "Apple smartwatch 7",
+      "image": "./img/9.jpg",
+      "quantity": 1,
+      "price": 650
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "name": "",
+      "total": 250,
+      "id": 12
+    },
+    {
+      "total": 250,
+      "id": 13
+    },
+    {
+      "total": 250,
+      "id": 14
+    },
+    {
+      "total": 750,
+      "id": 15
+    },
+    {
+      "total": 800,
+      "id": 16
+    },
+    {
+      "total": 900,
+      "id": 17
+    },
+    {
+      "total": 250,
+      "id": 18
+    },
+    {
+      "total": 250,
+      "id": 19
+    },
+    {
+      "total": 450,
+      "id": 20
+    },
+    {
+      "total": 1050,
+      "id": 21
+    },
+    {
+      "total": 150,
+      "id": 22
+    },
+    {
+      "total": 250,
+      "id": 23
+    }
+  ]
 }
