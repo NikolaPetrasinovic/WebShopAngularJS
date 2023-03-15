@@ -1,0 +1,19 @@
+<h1>Product Search</h1>
+
+<table border="1" style="border-collapse:collapse">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Gender</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tr ng-repeat="product in prdouctSearchCtrl.products">
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.image}}</td>
+        <td>{{product.quantity}}</td>
+        <td>{{product.price}}</td>
+    </tr>
+</table>

@@ -5,10 +5,12 @@
 			<div id="bg-background" class="col-8">
 				<h4>PRODUCTS</h4>
 				<hr style="border-top:1px groovy #ccc;">
+				Name : <input type="text" ng-model="homeCtrl.name">
+				<button ng-click="homeCtrl.searchProduct()">Search</button>
 				<div id="product">
 					<div id="p_list" ng-repeat="product in homeCtrl.products">
-						<span style="font-size:16px;" ui-sref="ProductDetails">{{product.name}}</span>
-						<center><img id="img" ui-sref="ProductDetails" ng-src="{{product.image}}"></center>
+						<span style="font-size:16px;" ui-sref="ProductDetails({id:product.id})">{{product.name}}</span>
+						<center><img id="img" ui-sref="ProductDetails({id:product.id})" ng-src="{{product.image}}"></center>
 						<div><label style="font-size:14px;">Price: ${{product.price}}</label></div>
 						<center><button type="button" id="addtocart" class="btn btn-primary" ng-click="homeCtrl.addtoCart(product)">Add to cart</button></center>
 					</div>
@@ -29,7 +31,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="product in homeCtrl.cart" ng-init = "homeCtrl.cartTotal()">
+								<tr ng-repeat="product in homeCtrl.cart">
 									<td>{{product.name}}</td>
 									<td>${{product.price}}</td>
 									<td><input type="number" ng-model="product.quantity" min="1" max="100"></td>
