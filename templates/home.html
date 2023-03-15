@@ -8,7 +8,7 @@
 				<div id="product">
 					<div id="p_list" ng-repeat="product in homeCtrl.products">
 						<span style="font-size:16px;" ui-sref="ProductDetails">{{product.name}}</span>
-						<center><img id="img"  ui-sref="ProductDetails" ng-src="{{product.image}}"></center>
+						<center><img id="img" ui-sref="ProductDetails" ng-src="{{product.image}}"></center>
 						<div><label style="font-size:14px;">Price: ${{product.price}}</label></div>
 						<center><button type="button" id="addtocart" class="btn btn-primary" ng-click="homeCtrl.addtoCart(product)">Add to cart</button></center>
 					</div>

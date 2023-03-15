@@ -51,7 +51,7 @@ var app = angular.module("webshop", ["ui.router"])
 		var order = {
 			total: vm.cartTotal()
 		  };
-		$http.post('http://localhost:3000/products', order)
+		$http.post('http://localhost:3000/orders', order)
       .then(function(response){
 		
 		alert('Order successful!');
@@ -61,16 +61,6 @@ var app = angular.module("webshop", ["ui.router"])
 		
 	})
 	
-
-	// .controller("productDetailsController", function($routeParams){
-	// 	var vm = this;
-	// 	var productId = $routeParams.id;
-	// 	angular.forEach(vm.products, function(product) {
-	// 		if (product.id === productId) {
-	// 		  vm.selectedProduct = product;
-	// 		}
-	// 	})
-	// })
 	.controller("productDetailsController", function($http, $stateParams){
 		var vm = this;
 
@@ -86,14 +76,20 @@ var app = angular.module("webshop", ["ui.router"])
 		})
 	 })
 
-	//  .controller('order', function() {
-	// 	var vm = this;
-	// 	this.cart = []; // initialize cart
-  
-	// 	this.buyOrder = function() {
-	// 	  // clear cart
-	// 	  this.cart = [];
-	// 	  // display success message
-	// 	  alert('Order successful!');
-	// 	};
-	//   });
+	//  vm.addToCart = function(product) {
+	// 	
+	// 	var cartItemIndex = vm.cartItems.findIndex(function(item) {
+	// 		return item.product.name === product.name;
+	// 	});
+	// 	if (cartItemIndex === -1) {
+	// 	
+	// 		vm.cartItems.push({
+	// 			product: product,
+	// 			quantity: 1
+	// 		});
+	// 	} else {
+	// 		
+	// 		vm.cartItems[cartItemIndex].quantity++;
+	// 	}
+	// 	console.log(vm.cartItems)
+	// };

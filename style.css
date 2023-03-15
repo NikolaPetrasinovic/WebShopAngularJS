@@ -51,3 +51,8 @@
 #btn-buy:hover{
     background-color: #4991f0
 }
+
+#img:hover{
+    padding: 10px;
+    transition: .4s;
+}
