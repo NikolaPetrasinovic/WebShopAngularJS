@@ -26,8 +26,11 @@ var app = angular.module("webshop", ["ui.router"])
 	})
 
 	
+.controller("homeController", homeController)
+.controller("productDetailsController", productDetailsController)
+.controller("productSearchController", productSearchController)
 
-.controller("homeController", function($http, $state){
+	function homeController($http, $state){
 		 	
 			var vm = this
 			vm.cart=[];
@@ -100,9 +103,9 @@ var app = angular.module("webshop", ["ui.router"])
 	  };
 	
 		
-	})
+	}
 	
-	.controller("productDetailsController", function($http, $stateParams){
+	function productDetailsController($http, $stateParams){
 		var vm = this;
 
 		$http({
@@ -115,9 +118,9 @@ var app = angular.module("webshop", ["ui.router"])
 			vm.product = response.data[0]
 			console.log(response)
 		})
-	 })
+	 }
 
-	 .controller("productSearchController", function($http, $stateParams){
+	function productSearchController($http, $stateParams){
 		var vm = this;
 		
 		if($stateParams.name)
@@ -138,6 +141,6 @@ var app = angular.module("webshop", ["ui.router"])
 			 })
 		}
 		
-	 })
+	 }
 
 	

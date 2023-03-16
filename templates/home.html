@@ -5,7 +5,7 @@
 			<div id="bg-background" class="col-8">
 				<h4>PRODUCTS</h4>
 				<hr style="border-top:1px groovy #ccc;">
-				Name : <input type="text" ng-model="homeCtrl.name">
+				<input type="text" ng-model="homeCtrl.keyword">
 				<button ng-click="homeCtrl.searchProduct()">Search</button>
 				<div id="product">
 					<div id="p_list" ng-repeat="product in homeCtrl.products">
@@ -40,7 +40,6 @@
 								</tr>
 								<tr ng-init = "homeCtrl.cartTotal()">
 									<td align = "right">Total</td>
-									
 									<td>${{homeCtrl.cartTotal()}}</td>
 									<td><button id="btn-buy" ng-click="homeCtrl.buyOrder()">Buy Now</button></td>
 								</tr>
@@ -51,3 +50,6 @@
 			</div>
 		</div>
 	</div> 	
+
+
+	
