@@ -15,23 +15,22 @@ var app = angular.module("webshop", ["ui.router"])
 			controller: "productDetailsController",
 			controllerAs: "productDetailsCtrl"
 		})	
-
-		.state("productsSearch", {
-			url: "/productsSearch/:name",
-		  templateUrl:"./templates/productSearch.html",
-		   controller:"productSearchController",
-		   controllerAs: "productSearchCtrl"
-	  })
 		$locationProvider.html5Mode(true);
 	})
 
 	
 .controller("homeController", homeController)
-.controller("productDetailsController", productDetailsController)
-.controller("productSearchController", productSearchController)
+.controller("productDetailsController", productDetails)
+.controller("productSearchController", productSearch)
 
 	function homeController($http, $state){
-		 	
+		var vm = this;
+  
+			vm.cartIsOpen = false; 
+			vm.toggleCart = function() {
+		
+				vm.cartIsOpen = !vm.cartIsOpen;
+			};
 			var vm = this
 			vm.cart=[];
 			$http.get("http://localhost:3000/products")
@@ -40,54 +39,51 @@ var app = angular.module("webshop", ["ui.router"])
 				  console.log(vm.products)
                 });
 
+				vm.searchTerm = ""; // searcTerm za search product
+
 				vm.searchProduct = function(){
 					if(vm.name){
 						$state.go("productSearch", {name: vm.name})}
 				}
 				
 				vm.addtoCart = function(product) {
-					// Check if product Id already exists in cart
 					var existingProduct = vm.cart.find(function(item) {
 					  return item.id === product.id;
 					});
-				  
-					// If product Id exists in cart, update quantity
 					if (existingProduct) {
 					  existingProduct.quantity++;
-					} else { // Otherwise, add new product to cart
+					} else { 
 					  product.quantity = 1;
 					  vm.cart.push(product);
 					}
 				  };
 
-		vm.cartTotal = function() {
-			var totalPrice = 0;
+				vm.cartTotal = function() {
+					var totalPrice = 0;
+					angular.forEach(vm.cart, function(product) {
+						totalPrice += product.price * product.quantity;
+					});
+					return totalPrice;
+				};
+
+			vm.removeProduct = function(product) {
+				var index = vm.cart.indexOf(product);
+				vm.cart.splice(index, 1);
+
+			};
+
+		this.buyOrder = function() {
+			var orderProducts = [];
+	
 			angular.forEach(vm.cart, function(product) {
-				totalPrice += product.price * product.quantity;
+			orderProducts.push({
+				id: product.id,
+				name: product.name,
+				price: product.price,
+				quantity: product.quantity
 			});
-			return totalPrice;
-		};
-
-	vm.removeProduct = function(product) {
-		var index = vm.cart.indexOf(product);
-		vm.cart.splice(index, 1);
-
-	  };
-
-	this.buyOrder = function() {
-		var orderProducts = [];
-	
-		// Create array of products with relevant details for order
-		angular.forEach(vm.cart, function(product) {
-		  orderProducts.push({
-			id: product.id,
-			name: product.name,
-			price: product.price,
-			quantity: product.quantity
-		  });
-		});
-	
-		// Add total to order object
+			});
+		
 		var order = {
 		  products: orderProducts,
 		  total: vm.cartTotal()
@@ -97,15 +93,15 @@ var app = angular.module("webshop", ["ui.router"])
 		  .then(function(response){
 			alert('Order successful!');
 		  });
-	
-		// Clear cart after order is placed
 		this.cart = [];
 	  };
-	
-		
+	  vm.filterProducts = function(product) {
+		return vm.searchTerm == "" || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
+	 }
+
 	}
 	
-	function productDetailsController($http, $stateParams){
+	function productDetails($http, $stateParams){
 		var vm = this;
 
 		$http({
@@ -118,29 +114,6 @@ var app = angular.module("webshop", ["ui.router"])
 			vm.product = response.data[0]
 			console.log(response)
 		})
-	 }
-
-	function productSearchController($http, $stateParams){
-		var vm = this;
-		
-		if($stateParams.name)
-		{
-			$http({
-				url:"http://localhost:3000/products?name_like=" +$stateParams.name,
-				method:"get"
-			})
-			.then(function(response){
-				
-				vm.products = response.data
-			})
-		}
-		else{
-			$http.get('http://localhost:3000/products')
-			 .then(function (response){
-				vm.products = response.data;
-			 })
-		}
-		
 	 }
 
 	
