@@ -42,9 +42,20 @@ var app = angular.module("webshop", ["ui.router"])
 						$state.go("productSearch", {name: vm.name})}
 				}
 				
-		vm.addtoCart = function(product){
-				vm.cart.push(product);
-		}
+				vm.addtoCart = function(product) {
+					// Check if product Id already exists in cart
+					var existingProduct = vm.cart.find(function(item) {
+					  return item.id === product.id;
+					});
+				  
+					// If product Id exists in cart, update quantity
+					if (existingProduct) {
+					  existingProduct.quantity++;
+					} else { // Otherwise, add new product to cart
+					  product.quantity = 1;
+					  vm.cart.push(product);
+					}
+				  };
 
 		vm.cartTotal = function() {
 			var totalPrice = 0;
