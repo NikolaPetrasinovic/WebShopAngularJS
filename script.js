@@ -21,17 +21,22 @@ var app = angular.module("webshop", ["ui.router"])
 	
 .controller("homeController", homeController)
 .controller("productDetailsController", productDetails)
-.controller("productSearchController", productSearch)
 
 	function homeController($http, $state){
 		var vm = this;
-  
-			vm.cartIsOpen = false; 
-			vm.toggleCart = function() {
-		
-				vm.cartIsOpen = !vm.cartIsOpen;
+		vm.searchTerm = ""; // searcTerm za search product
+		vm.cartIsOpen = false; 
+		vm.toggleCart = toggleCart;
+		vm.addtoCart = addtoCart;
+		vm.cartTotal = cartTotal;
+		vm.removeProduct = removeProduct;
+		vm.buyOrder = buyOrder;
+		vm.filterProducts = filterProducts;
+
+		function toggleCart() {
+
+			vm.cartIsOpen = !vm.cartIsOpen;
 			};
-			var vm = this
 			vm.cart=[];
 			$http.get("http://localhost:3000/products")
                 .then(function(response){
@@ -39,14 +44,7 @@ var app = angular.module("webshop", ["ui.router"])
 				  console.log(vm.products)
                 });
 
-				vm.searchTerm = ""; // searcTerm za search product
-
-				vm.searchProduct = function(){
-					if(vm.name){
-						$state.go("productSearch", {name: vm.name})}
-				}
-				
-				vm.addtoCart = function(product) {
+				 function addtoCart(product) {
 					var existingProduct = vm.cart.find(function(item) {
 					  return item.id === product.id;
 					});
@@ -58,7 +56,7 @@ var app = angular.module("webshop", ["ui.router"])
 					}
 				  };
 
-				vm.cartTotal = function() {
+				function cartTotal() {
 					var totalPrice = 0;
 					angular.forEach(vm.cart, function(product) {
 						totalPrice += product.price * product.quantity;
@@ -66,13 +64,13 @@ var app = angular.module("webshop", ["ui.router"])
 					return totalPrice;
 				};
 
-			vm.removeProduct = function(product) {
+			function removeProduct(product) {
 				var index = vm.cart.indexOf(product);
 				vm.cart.splice(index, 1);
 
 			};
 
-		this.buyOrder = function() {
+		function buyOrder() {
 			var orderProducts = [];
 	
 			angular.forEach(vm.cart, function(product) {
@@ -95,7 +93,7 @@ var app = angular.module("webshop", ["ui.router"])
 		  });
 		this.cart = [];
 	  };
-	  vm.filterProducts = function(product) {
+	  function filterProducts(product) {
 		return vm.searchTerm == "" || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
 	 }
 
