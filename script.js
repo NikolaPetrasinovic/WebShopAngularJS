@@ -36,39 +36,38 @@ var app = angular.module("webshop", ["ui.router"])
 		function toggleCart() {
 
 			vm.cartIsOpen = !vm.cartIsOpen;
+		};
+		vm.cart=[];
+		$http.get("http://localhost:3000/products")
+			 .then(function(response){
+				vm.products = response.data;
+				console.log(vm.products)
+			});
+
+		function addtoCart(product) {
+			var existingProduct = vm.cart.find(function(item) {
+					return item.id === product.id;
+				});
+				if (existingProduct) {
+					existingProduct.quantity++;
+				} else { 
+					product.quantity = 1;
+					vm.cart.push(product);
+				}
 			};
-			vm.cart=[];
-			$http.get("http://localhost:3000/products")
-                .then(function(response){
-                  vm.products = response.data;
-				  console.log(vm.products)
-                });
 
-				 function addtoCart(product) {
-					var existingProduct = vm.cart.find(function(item) {
-					  return item.id === product.id;
-					});
-					if (existingProduct) {
-					  existingProduct.quantity++;
-					} else { 
-					  product.quantity = 1;
-					  vm.cart.push(product);
-					}
-				  };
+		function cartTotal() {
+			var totalPrice = 0;
+			angular.forEach(vm.cart, function(product) {
+				totalPrice += product.price * product.quantity;
+			});
+			return totalPrice;
+		};
 
-				function cartTotal() {
-					var totalPrice = 0;
-					angular.forEach(vm.cart, function(product) {
-						totalPrice += product.price * product.quantity;
-					});
-					return totalPrice;
-				};
-
-			function removeProduct(product) {
-				var index = vm.cart.indexOf(product);
-				vm.cart.splice(index, 1);
-
-			};
+		function removeProduct(product) {
+			var index = vm.cart.indexOf(product);
+			vm.cart.splice(index, 1);
+		};
 
 		function buyOrder() {
 			var orderProducts = [];

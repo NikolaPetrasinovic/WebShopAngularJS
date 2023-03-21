@@ -14,6 +14,7 @@
                     <center><img id="img" ng-src="{{productDetailsCtrl.product.image}}"></center>
                     <div><label style="font-size:14px;">Price: ${{productDetailsCtrl.product.price}}</label></div>
                     <!-- <center><button type="button" id="addtocart" class="btn btn-primary" ng-click="homeCtrl.addtoCart(product)">Add to cart</button></center> -->
+                    <button type="button" id="addtocart" class="btn btn-primary" ng-click="productDetailsCtrl.addToCart(productDetailsCtrl.product)">Add to cart</button>
                 </div>
             </div>
         </div>
