@@ -21,6 +21,27 @@ var app = angular.module("webshop", ["ui.router"])
 	
 .controller("homeController", homeController)
 .controller("productDetailsController", productDetails)
+.factory("CartService", cartService)
+
+	function cartService ($window) {
+		var cartData = [];
+
+		function getCartData() {
+			var cartDataJSON = $window.localStorage.getItem("cart");
+			if(cartDataJSON) {
+				cartData = JSON.parse(cartDataJSON);
+			}
+			return cartData;
+		}
+
+		function saveCartData(cart) {
+			$window.localStorage.setItem("cart", JSON.stringify(cart));
+		}
+		return {
+			getCartData: getCartData,
+			saveCartData: saveCartData,
+		};
+	}
 
 	function homeController($http, $state){
 		var vm = this;
@@ -129,7 +150,7 @@ var app = angular.module("webshop", ["ui.router"])
 		vm.initCart = function () {
 			vm.cart = JSON.parse($window.localStorage.getItem('cart')) || [];
 		};
-		
+
 		vm.initCart();
 	 }
 
