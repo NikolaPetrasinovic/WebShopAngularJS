@@ -111,6 +111,26 @@ var app = angular.module("webshop", ["ui.router"])
 			vm.product = response.data[0]
 			console.log(response)
 		})
+		//dodavanje proizvoda u korpu i cuvanje u json
+		vm.addToCart = function (product) {
+			var existingProduct= vm.cart.find(function(item) {
+				return item.id === product.id;
+			});
+			if(existingProduct){
+				existingProduct.quantity++;
+			} else {
+				product.quantity = 1;
+				vm.cart.push(product);
+			}
+			//cuvanje u jsonu
+			$window.localStorage.setItem('cart', JSON.stringify(vm.cart));
+		};
+		//inicijalizacija korpe iz jsona
+		vm.initCart = function () {
+			vm.cart = JSON.parse($window.localStorage.getItem('cart')) || [];
+		};
+		
+		vm.initCart();
 	 }
 
 	
