@@ -291,6 +291,18 @@
       ],
       "total": 1350,
       "id": 25
+    },
+    {
+      "products": [
+        {
+          "id": 1,
+          "name": "AirMax",
+          "price": 150,
+          "quantity": 2
+        }
+      ],
+      "total": 300,
+      "id": 26
     }
   ]
 }

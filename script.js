@@ -151,7 +151,10 @@ var app = angular.module("webshop", ["ui.router"])
 			}
 			//cuvanje u jsonu
 			$window.localStorage.setItem('cart', JSON.stringify(vm.cart));
+			alert("Product added to cart");
 		};
+
+		
 		//inicijalizacija korpe iz jsona
 		vm.initCart = function () {
 			vm.cart = JSON.parse($window.localStorage.getItem('cart')) || [];
