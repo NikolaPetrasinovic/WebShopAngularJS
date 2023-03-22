@@ -9,6 +9,7 @@
     clear:both;
 }
 #p_list{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     width:200px;
     max-width:200px;
     height:270px;
@@ -21,9 +22,6 @@
     height:150px; 
     width:150px;
 }
-/* #img:hover{
-    background-color: rgb(0, 77, 102)
-} */
 
 #inputQuantity[type="text"] {
     padding: 8px;
@@ -38,18 +36,21 @@
 }
 
 #btn-buy{
+    font-family: Arial, sans-serif;
+    border-radius: 5px;
+    color: #fff;
     display:table-column;
     margin: 1.5rem, auto 0 auto;
     padding: 10px 10px;
     border: none;
     background-color: #7b7b80;
-    color: #000000 ;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
 }
 #btn-buy:hover{
-    background-color: #4991f0
+    background-color: #4991f0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 #img:hover{
