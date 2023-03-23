@@ -6,7 +6,7 @@
       "image": "./img/1.jpg",
       "quantity": 1,
       "price": 150,
-      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..." 
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     },
     {
       "id": 2,
@@ -317,6 +317,18 @@
       "products": [],
       "total": 0,
       "id": 27
+    },
+    {
+      "products": [
+        {
+          "id": 1,
+          "name": "AirMax",
+          "price": 150,
+          "quantity": 4
+        }
+      ],
+      "total": 600,
+      "id": 28
     }
   ]
 }
