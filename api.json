@@ -5,63 +5,72 @@
       "name": "AirMax",
       "image": "./img/1.jpg",
       "quantity": 1,
-      "price": 150
+      "price": 150,
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..." 
     },
     {
       "id": 2,
       "name": "Backpack",
       "image": "./img/2.jpg",
       "quantity": 1,
-      "price": 100
+      "price": 100,
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     },
     {
       "id": 3,
       "name": "Galaxy Fold Z",
       "image": "./img/3.jpg",
       "quantity": 1,
-      "price": 900
+      "price": 900,
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     },
     {
       "id": 4,
       "name": "Nikon camera",
       "image": "./img/4.jpg",
       "quantity": 1,
-      "price": 1000
+      "price": 1000,
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     },
     {
       "id": 5,
       "name": "Apple smartwatch",
       "image": "./img/5.jpg",
       "quantity": 1,
-      "price": 600
+      "price": 600,
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     },
     {
       "id": 6,
       "name": "iPhone 14",
       "image": "./img/6.jpg",
       "quantity": 1,
-      "price": 799
+      "price": 799,
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     },
     {
       "id": 7,
       "name": "Macbook air",
       "image": "./img/7.jpg",
       "quantity": 1,
-      "price": 999
+      "price": 999,
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     },
     {
       "id": 8,
       "name": "Samsung smartwatch",
       "image": "./img/8.jpg",
       "quantity": 1,
-      "price": 500
+      "price": 500,
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     },
     {
       "id": 9,
       "name": "Apple smartwatch 7",
       "image": "./img/9.jpg",
       "quantity": 1,
-      "price": 650
+      "price": 650,
+      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     }
   ],
   "orders": [
