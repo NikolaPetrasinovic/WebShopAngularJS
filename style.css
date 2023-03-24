@@ -106,5 +106,9 @@
   button {
     margin-top: 20px;
   }
+
+  #desc{
+    border: 1px solid #c4bebe;
+  }
   
  
