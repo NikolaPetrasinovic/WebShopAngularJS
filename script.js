@@ -152,6 +152,7 @@ function productDetails($http, $stateParams, CartService) {
           vm.cart.push(product);
       }
       CartService.saveCartData(vm.cart);
+      alert("Product successfuly added.")
   };
 
   vm.initCart(); //immediatly after function add to cart, for latest data
