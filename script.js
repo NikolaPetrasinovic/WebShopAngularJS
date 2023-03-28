@@ -33,7 +33,10 @@ function CartService($http) {
 	var cartData = [];
 
 	function getCartData() {
-		return cartData;
+		return $http.get('http://localhost:3000/cart').then(function (response) {
+            cartData = response.data;
+            return cartData;
+        });
 	}
 
 	function saveCartData(cart) {
@@ -79,23 +82,14 @@ function homeController($http, CartService) {
 		vm.cartIsOpen = !vm.cartIsOpen;
 	}
 
-	vm.cart = CartService.getCartData();
+	CartService.getCartData().then(function (cart) {
+        vm.cart = cart;
+    });
 
 	$http.get('http://localhost:3000/products').then(function (response) {
 		vm.products = response.data;
 		console.log(vm.products);
 	});
-
-	// CartService.getCartData()
-	// .then(function(cart) {
-	//   vm.cart = cart;
-	// });
-
-	// $http.get("http://localhost:3000/cart")
-	// .then(function (response) {
-	//   vm.cart = response.data;
-	//   console.log(vm.cart);
-	// });
 
 	function addtoCart(product) {
 		try {
@@ -120,16 +114,11 @@ function homeController($http, CartService) {
 	}
 
 	function cartTotal() {
-		try {
-			if (!vm.cart) throw 'Cart data not found.';
 			var totalPrice = 0;
 			angular.forEach(vm.cart, function (product) {
 				totalPrice += product.price * product.quantity;
 			});
 			return totalPrice;
-		} catch (error) {
-			console.error(error);
-		}
 	}
 
 	function removeProduct(cart) {

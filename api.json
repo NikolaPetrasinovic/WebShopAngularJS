@@ -195,22 +195,5 @@
       "id": 6
     }
   ],
-  "cart": [
-    {
-      "id": 2,
-      "name": "Backpack",
-      "image": "./img/2.jpg",
-      "quantity": 1,
-      "price": 100,
-      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-    },
-    {
-      "id": 3,
-      "name": "Galaxy Fold Z",
-      "image": "./img/3.jpg",
-      "quantity": 1,
-      "price": 900,
-      "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-    }
-  ]
+  "cart": []
 }
