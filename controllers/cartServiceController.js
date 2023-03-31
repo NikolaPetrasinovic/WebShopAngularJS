@@ -1,20 +1,24 @@
 angular.module('webshop').factory('CartService', CartService);
 
-// CartService.$inject = ['$http'];
+CartService.$inject = ['$http'];
 
 function CartService($http) {
+	var vm = this;
 	var cartData = [];
+	vm.getCartData = getCartData;
+	vm.saveCartData = saveCartData;
+	vm.deleteProduct = deleteProduct;
+	vm.updateCart = updateCart;
 
 	function getCartData() {
-		try {
-			if (!cart) throw 'Cart data not found.';
 		return $http.get('http://localhost:3000/cart').then(function (response) {
 			cartData = response.data;
 			return cartData;
-		});
-		} catch (error) {
-			console.error(error);
-		}
+		})
+		.catch(function(error) {
+            console.error(error);
+            throw error;
+        });
 	}
 
 	function saveCartData(cart) {

@@ -1,6 +1,6 @@
 angular.module('webshop').controller('homeController', homeController);
 
-// homeController.$inject = ['$http', 'CartService', '$timeout'];
+homeController.$inject = ['$http', 'CartService', '$timeout'];
 
 function homeController($http, CartService, $timeout) {
 	var vm = this;
@@ -90,14 +90,16 @@ function homeController($http, CartService, $timeout) {
 				products: orderProducts,
 				total: vm.cartTotal()
 			};
-
+			// $http.post("http://localhost:3000/orders", order).then(function (response) {
+     		// 	 alert("Order successful!");
+    		// });
 			angular.forEach(vm.cart, function (product) {
 					$timeout(function () {
 						$http.delete('http://localhost:3000/cart/' + product.id)
 							console.log('Product deleted.');
 							vm.cart = [];
 						});
-					}, 400);
+					}, 4000);
 				}
 			
 			catch (error) {

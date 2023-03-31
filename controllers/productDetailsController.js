@@ -1,6 +1,6 @@
 angular.module('webshop').controller('productDetailsController', productDetails);
 
-// productDetails.$inject = ['$http', '$stateParams', 'CartService'];
+productDetails.$inject = ['$http', '$stateParams', 'CartService'];
 
 function productDetails($http, $stateParams, CartService) {
 	var vm = this;
