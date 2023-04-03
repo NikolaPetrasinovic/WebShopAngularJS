@@ -73,8 +73,7 @@ function homeController($http, CartService, $timeout) {
 	}
 
 	function buyOrder() {
-		try {
-			if (!vm.cart || vm.cart.length === 0) throw 'No products in cart.';
+		
 			var orderProducts = [];
 
 			angular.forEach(vm.cart, function (product) {
@@ -93,20 +92,20 @@ function homeController($http, CartService, $timeout) {
 			// $http.post("http://localhost:3000/orders", order).then(function (response) {
      		// 	 alert("Order successful!");
     		// });
-			angular.forEach(vm.cart, function (product) {
-					$timeout(function () {
-						$http.delete('http://localhost:3000/cart/' + product.id)
-							console.log('Product deleted.');
-							vm.cart = [];
+			for (let i = vm.cart.length - 1; i >= 0; i--) {
+				$timeout(function () {
+					$http
+						.delete('http://localhost:3000/cart/' + vm.cart[i].id)
+						.then(function (response) {})
+						.catch(function (error) {
+							console.log(error);
 						});
-					}, 4000);
-				}
-			
-			catch (error) {
-			console.error(error);
+				}, 500 * i);
+			}
+			$timeout(function () {
+				vm.cart = [];
+			}, 500 * vm.cart.length + 500);
 		}
-	
-	}
 
 	function filterProducts(product) {
 		return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
