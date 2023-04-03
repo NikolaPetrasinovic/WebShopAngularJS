@@ -5,10 +5,6 @@ CartService.$inject = ['$http'];
 function CartService($http) {
 	var vm = this;
 	var cartData = [];
-	vm.getCartData = getCartData;
-	vm.saveCartData = saveCartData;
-	vm.deleteProduct = deleteProduct;
-	vm.updateCart = updateCart;
 
 	function getCartData() {
 		return $http.get('http://localhost:3000/cart').then(function (response) {

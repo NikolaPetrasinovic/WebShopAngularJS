@@ -74,21 +74,21 @@ function homeController($http, CartService, $timeout) {
 
 	function buyOrder() {
 		
-			var orderProducts = [];
+			// var orderProducts = [];
 
-			angular.forEach(vm.cart, function (product) {
-				orderProducts.push({
-					id: product.id,
-					name: product.name,
-					price: product.price,
-					quantity: product.quantity
-				});
-			});
+			// angular.forEach(vm.cart, function (product) {
+			// 	orderProducts.push({
+			// 		id: product.id,
+			// 		name: product.name,
+			// 		price: product.price,
+			// 		quantity: product.quantity
+			// 	});
+			// });
 
-			var order = {
-				products: orderProducts,
-				total: vm.cartTotal()
-			};
+			// var order = {
+			// 	products: orderProducts,
+			// 	total: vm.cartTotal()
+			// };
 			// $http.post("http://localhost:3000/orders", order).then(function (response) {
      		// 	 alert("Order successful!");
     		// });
