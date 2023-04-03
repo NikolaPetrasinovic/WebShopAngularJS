@@ -20,8 +20,9 @@
 				<div class="panel panel-primary"> 
 				  <div class="panel-heading"> 
 					<h5>MY CART</h5>
-					<button class="btn btn-primary float-right" ng-click="homeCtrl.toggleCart()">
+					<button id="btnopen" class="btn btn-primary float-right" ng-click="homeCtrl.toggleCart()">
 					  {{ homeCtrl.cartIsOpen ? 'Close Cart' : 'Open Cart' }}
+					  <span class="cart-count">{{homeCtrl.cart.length}}</span>
 					</button>
 				  </div> 
 				  <div class="panel-body table-responsive" ng-show="homeCtrl.cartIsOpen"> 

@@ -111,13 +111,3 @@ function homeController($http, CartService, $timeout) {
 		return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
 	}
 }
-
-// angular.forEach(vm.cart, function (product) {
-// 	for(var i = 0; i < 10; i++){
-// 		$timeout(function () {
-// 			$http.delete('http://localhost:3000/cart/' + product.id)
-// 				console.log('Product deleted.');
-// 				vm.cart = [];
-// 			});
-// 		} 400*i});
-// 	}
