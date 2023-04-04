@@ -9,6 +9,7 @@ function homeController($http, CartService, $timeout) {
 	vm.toggleCart = toggleCart;
 	vm.addtoCart = addtoCart;
 	vm.cartTotal = cartTotal;
+	vm.cartTotalQuantity = cartTotalQuantity;
 	vm.removeProduct = removeProduct;
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
@@ -58,6 +59,14 @@ function homeController($http, CartService, $timeout) {
 		});
 		return totalPrice;
 	}
+
+	function cartTotalQuantity() {
+		var totalQuantity = 0;
+		angular.forEach(vm.cart, function (product) {
+			totalQuantity += product.quantity;
+		});
+		return totalQuantity;
+	};
 
 	function removeProduct(cart) {
 		try {

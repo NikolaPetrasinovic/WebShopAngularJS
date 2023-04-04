@@ -22,7 +22,7 @@
 					<h5>MY CART</h5>
 					<button id="btnopen" class="btn btn-primary float-right" ng-click="homeCtrl.toggleCart()">
 					  {{ homeCtrl.cartIsOpen ? 'Close Cart' : 'Open Cart' }}
-					  <span class="cart-count">{{homeCtrl.cart.length}}</span>
+					  <span class="cart-count">{{homeCtrl.cartTotalQuantity()}}</span>
 					</button>
 				  </div> 
 				  <div class="panel-body table-responsive" ng-show="homeCtrl.cartIsOpen"> 
