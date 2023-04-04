@@ -25,16 +25,14 @@ function productDetails($http, $stateParams, CartService) {
 		});
 		if (existingProduct) {
 			existingProduct.quantity++;
-			CartService.updateCart(existingProduct)
+			CartService.updateCart(existingProduct) //catch blok za ovo uraditi !!!!!
 		} else {
 			product.quantity = 1;
 			CartService.saveCartData(product).then(function(){
 				vm.cart.push(product)
+				alert('Product successfuly added.');
 			})		
-		}
-
-	
-		alert('Product successfuly added.');
+		}	
 	};
 
 	vm.initCart(); //immediatly after function add to cart, for latest data

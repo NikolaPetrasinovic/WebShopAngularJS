@@ -23,7 +23,7 @@ function homeController($http, CartService, $timeout) {
 		vm.cart = cart;
 	});
 
-	$http.get('http://localhost:3000/products').then(function (response) {
+	$http.get('http://localhost:3000/products').then(function (response) { // ovo premestiti u service !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		vm.products = response.data;
 		console.log(vm.products);
 	});
@@ -33,7 +33,7 @@ function homeController($http, CartService, $timeout) {
 			if (!product) throw 'Please select a product.';
 			var existingProduct = vm.cart.find(function (item) {
 				return item.id === product.id;
-			});
+			}); // kreirati novi objekat u kojem ce da se pusuje objekat proizovda sa novim id-em !!!!!!!!!!!!!!
 			if (existingProduct) {
 				existingProduct.quantity++;
 				CartService.updateCart(existingProduct);
