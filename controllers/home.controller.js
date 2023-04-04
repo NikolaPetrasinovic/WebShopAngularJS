@@ -12,6 +12,7 @@ function homeController($http, CartService, $timeout) {
 	vm.removeProduct = removeProduct;
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
+	vm.clearCart = false;
 
 	function toggleCart() {
 		vm.cartIsOpen = !vm.cartIsOpen;
@@ -73,6 +74,7 @@ function homeController($http, CartService, $timeout) {
 	}
 
 	function buyOrder() {
+			
 		
 			// var orderProducts = [];
 
@@ -92,6 +94,7 @@ function homeController($http, CartService, $timeout) {
 			// $http.post("http://localhost:3000/orders", order).then(function (response) {
      		// 	 alert("Order successful!");
     		// });
+			vm.clearCart = true;
 			for (let i = vm.cart.length - 1; i >= 0; i--) {
 				$timeout(function () {
 					$http
@@ -104,6 +107,7 @@ function homeController($http, CartService, $timeout) {
 			}
 			$timeout(function () {
 				vm.cart = [];
+				vm.clearCart = false;
 			}, 500 * vm.cart.length + 500);
 		}
 

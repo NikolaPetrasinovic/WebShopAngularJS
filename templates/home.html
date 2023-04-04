@@ -45,7 +45,10 @@
 						  <td align="right">Total</td> 
 						  <td>${{homeCtrl.cartTotal()}}</td> 
 						  <td><button id="btn-buy" ng-click="homeCtrl.buyOrder()">Buy Now</button></td> 
-						</tr> 
+						</tr>
+						<div ng-show="homeCtrl.clearCart">
+							<i class="fa fa-spinner fa-spin"></i> Clearing cart...
+						  </div>
 					  </tbody> 
 					</table> 
 				  </div> 
@@ -53,4 +56,4 @@
 			  </div>
 
 
-	
+		
