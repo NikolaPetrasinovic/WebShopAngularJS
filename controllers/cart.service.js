@@ -9,7 +9,7 @@ function CartService($http) {
 	function getProducts() {
 		return $http.get('http://localhost:3000/products').then(function (response) { 
 			vm.products = response.data;
-			console.log(vm.products);
+			return vm.products;
 		})
 		.catch(function(error) {
 			console.error(error);

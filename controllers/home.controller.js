@@ -27,12 +27,6 @@ function homeController($http, CartService, $timeout) {
 		vm.products = products;
 	});
 
-
-	$http.get('http://localhost:3000/products').then(function (response) { // ovo premestiti u service !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		vm.products = response.data;
-		console.log(vm.products);
-	});
-
 	function addtoCart(product) {
 		try {
 			if (!product) throw 'Please select a product.';
