@@ -6,6 +6,18 @@ function CartService($http) {
 	var vm = this;
 	var cartData = [];
 
+	function getProducts() {
+		return $http.get('http://localhost:3000/products').then(function (response) { 
+			vm.products = response.data;
+			console.log(vm.products);
+		})
+		.catch(function(error) {
+			console.error(error);
+			throw error;
+		});
+	}
+	
+
 	function getCartData() {
 		return $http.get('http://localhost:3000/cart').then(function (response) {
 			cartData = response.data;
@@ -37,6 +49,7 @@ function CartService($http) {
 		return $http.put('http://localhost:3000/cart/' + product.id, product);
 	}
 	return {
+		getProducts: getProducts,
 		getCartData: getCartData,
 		saveCartData: saveCartData,
 		deleteProduct: deleteProduct,
