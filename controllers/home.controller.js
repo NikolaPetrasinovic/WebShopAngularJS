@@ -23,6 +23,11 @@ function homeController($http, CartService, $timeout) {
 		vm.cart = cart;
 	});
 
+	CartService.getProducts().then(function (products) {
+		vm.products = products;
+	});
+
+
 	$http.get('http://localhost:3000/products').then(function (response) { // ovo premestiti u service !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		vm.products = response.data;
 		console.log(vm.products);
