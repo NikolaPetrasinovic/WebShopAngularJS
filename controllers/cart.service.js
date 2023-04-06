@@ -42,11 +42,19 @@ function CartService($http) {
 	function deleteProduct(id) {
 		return $http.delete('http://localhost:3000/cart/' + id).then(function (deleteResponse) {
 			console.log('Product deleted.');
-		});
+		})
+		.catch(function(error) {
+			console.error('Error deleting product:', error);
+			throw error;
+		  });
 	}
 
 	function updateCart(product) {
-		return $http.put('http://localhost:3000/cart/' + product.id, product);
+		return $http.put('http://localhost:3000/cart/' + product.id, product)
+		.catch(function(error) {
+			console.error('Error updating cart:', error);
+			throw error;
+		  });
 	}
 	function addtoCart(product) {
 		if (!Array.isArray(cartData)) {
