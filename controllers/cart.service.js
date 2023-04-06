@@ -56,6 +56,7 @@ function CartService($http) {
 			throw error;
 		  });
 	}
+
 	function addtoCart(product) {
 		if (!Array.isArray(cartData)) {
 		  cartData = [];
@@ -87,9 +88,7 @@ function CartService($http) {
 		  console.log(cartData);
 		} else {
 		  cartData[existingProduct].quantity++;
-		  $http.put('http://localhost:3000/cart/' + cartData[existingProduct].id, cartData[existingProduct]).then(function (response) {
-			console.log(cartData[existingProduct].id);
-		  });
+		updateCart(cartData[existingProduct]);
 		}
 	  }
 	return {
@@ -101,3 +100,8 @@ function CartService($http) {
 		addtoCart: addtoCart
 	};
 }
+
+
+	//   $http.put('http://localhost:3000/cart/' + cartData[existingProduct].id, cartData[existingProduct]).then(function (response) {
+		// 	console.log(cartData[existingProduct].id);
+		//   });
