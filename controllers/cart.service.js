@@ -88,7 +88,7 @@ function CartService($http) {
 		  console.log(cartData);
 		} else {
 		  cartData[existingProduct].quantity++;
-		updateCart(cartData[existingProduct]);
+		  updateCart(cartData[existingProduct]);
 		}
 	  }
 	return {

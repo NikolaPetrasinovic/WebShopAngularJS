@@ -75,13 +75,5 @@
   ],
   "orders": [],
   "cart": [
-    {
-      "productID": 2,
-      "name": "Backpack",
-      "price": 100,
-      "quantity": 9,
-      "imageURL": "./img/2.jpg",
-      "id": 1
-    }
   ]
 }
