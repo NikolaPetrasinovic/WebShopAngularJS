@@ -26,31 +26,13 @@ function homeController($http, CartService, $timeout) {
 	CartService.getProducts().then(function (products) {
 		vm.products = products;
 	});
-
 	function addtoCart(product) {
-		try {
-			if (!product) throw 'Please select a product.';
-			var existingProduct = vm.cart.find(function (item) {
-				return item.id === product.id;
-			}); // kreirati novi objekat u kojem ce da se pusuje objekat proizovda sa novim id-em !!!!!!!!!!!!!!
-			if (existingProduct) {
-				existingProduct.quantity++;
-				CartService.updateCart(existingProduct);
-			} else {
-				product.quantity = 1;
-				CartService.saveCartData(product)
-					.then(function () {
-						vm.cart.push(product);
-					})
-					.catch(function () {
-						console.log('Error');
-					});
-			}
-		} catch (error) {
-			console.error(error);
-		}
-	}
+        CartService.addtoCart(product).then(function(response) {
+            console.log(response);
+        });
+    };
 
+	
 	function cartTotal() {
 		var totalPrice = 0;
 		angular.forEach(vm.cart, function (product) {
@@ -123,3 +105,40 @@ function homeController($http, CartService, $timeout) {
 		return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
 	}
 }
+
+// function addtoCart(product) {
+	// 	if (!Array.isArray(vm.cart)) {
+    //         vm.cart = [];
+    //     }
+	// 		var existingProduct = vm.cart.findIndex(function (item) {
+	// 			return item.productID === product.id;
+	// 		}); 
+	// 		if (existingProduct === -1) {
+	// 			var newObject = {
+	// 				productID: product.id,
+	// 				name: product.name,
+	// 				price: product.price,
+	// 				quantity: product.quantity,
+	// 				imageURL: product.image
+	// 		}; 
+	// 		var t;
+	// 		$http.post('http://localhost:3000/cart', newObject).then(function (response) {
+    //             t = response.data.id;
+	// 			t = {
+	// 				productID: product.id,
+    //                 name: product.name,
+    //                 price: product.price,
+    //                 quantity: product.quantity,
+    //                 imageURL: product.image,
+    //                 id: t
+	// 			};
+	// 			vm.cart.push(t);
+	// 		});
+	// 		console.log(vm.cart);
+	// 	} else {
+	// 		vm.cart[existingProduct].quantity++;
+	// 		$http.put('http://localhost:3000/cart/' + vm.cart[existingProduct].id, vm.cart[existingProduct]).then(function (response) {
+    //             console.log(vm.cart[existingProduct].id);
+    //         });
+	// 	}
+	// }

@@ -48,11 +48,48 @@ function CartService($http) {
 	function updateCart(product) {
 		return $http.put('http://localhost:3000/cart/' + product.id, product);
 	}
+	function addtoCart(product) {
+		if (!Array.isArray(cartData)) {
+		  cartData = [];
+		}
+		var existingProduct = cartData.findIndex(function (item) {
+		  return item.productID === product.id;
+		}); 
+		if (existingProduct === -1) {
+		  var newObject = {
+			productID: product.id,
+			name: product.name,
+			price: product.price,
+			quantity: product.quantity,
+			imageURL: product.image
+		  }; 
+		  var t;
+		  $http.post('http://localhost:3000/cart', newObject).then(function (response) {
+			t = response.data.id;
+			t = {
+			  productID: product.id,
+			  name: product.name,
+			  price: product.price,
+			  quantity: product.quantity,
+			  imageURL: product.image,
+			  id: t
+			};
+			cartData.push(t);
+		  });
+		  console.log(cartData);
+		} else {
+		  cartData[existingProduct].quantity++;
+		  $http.put('http://localhost:3000/cart/' + cartData[existingProduct].id, cartData[existingProduct]).then(function (response) {
+			console.log(cartData[existingProduct].id);
+		  });
+		}
+	  }
 	return {
 		getProducts: getProducts,
 		getCartData: getCartData,
 		saveCartData: saveCartData,
 		deleteProduct: deleteProduct,
-		updateCart: updateCart
+		updateCart: updateCart,
+		addtoCart: addtoCart
 	};
 }
