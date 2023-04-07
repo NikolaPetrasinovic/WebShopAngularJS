@@ -1,8 +1,8 @@
 angular.module('webshop').factory('CartService', CartService);
 
-CartService.$inject = ['$http'];
+CartService.$inject = ['$http', '$timeout'];
 
-function CartService($http) {
+function CartService($http, $timeout) {
 	var vm = this;
 	var cartData = [];
 
@@ -102,6 +102,46 @@ function CartService($http) {
 			}
 		});
 	}
+
+	// function buyOrder() {
+	// 	vm.clearCart = true;
+	// 	for (let i = cartData.length - 1; i >= 0; i--) {
+	// 		$timeout(function () {
+	// 			$http
+	// 				.delete('http://localhost:3000/cart/' + cartData[i].id)
+	// 				.then(function (response) {})
+	// 				.catch(function (error) {
+	// 					console.log(error);
+	// 				});
+	// 		}, 500 * i);
+	// 	}
+	// 	$timeout(function () {
+	// 		cartData = [];
+	// 		vm.clearCart = false;
+	// 	}, 500 * cartData.length + 500);
+	// }
+	function buyOrder() {
+		vm.clearCart = true;
+		for (let i = cartData.length - 1; i >= 0; i--) {
+			$timeout(function () {
+				$http
+					.delete('http://localhost:3000/cart/' + cartData[i].id)
+					.then(function (response) {})
+					.catch(function (error) {
+						console.log(error);
+					});
+			}, 500 * i);
+		}
+		$timeout(function () {
+			cartData = [];
+			vm.clearCart = false;
+		}, 500 * cartData.length + 500);
+
+		// return the promise to be resolved in homeController
+		return $timeout(function () {
+			return true;
+		}, 500 * cartData.length + 500);
+	}
 	
 	return {
 		getProducts: getProducts,
@@ -109,10 +149,7 @@ function CartService($http) {
 		saveCartData: saveCartData,
 		deleteProduct: deleteProduct,
 		updateCart: updateCart,
-		addtoCart: addtoCart
+		addtoCart: addtoCart,
+		buyOrder: buyOrder
 	};
 }
-
-//   $http.put('http://localhost:3000/cart/' + cartData[existingProduct].id, cartData[existingProduct]).then(function (response) {
-// 	console.log(cartData[existingProduct].id);
-//   });
