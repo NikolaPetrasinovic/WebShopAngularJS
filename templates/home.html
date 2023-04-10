@@ -22,7 +22,7 @@
 					<h5>MY CART</h5>
 					<button id="btnopen" class="btn btn-primary float-right" ng-click="homeCtrl.toggleCart()">
 					  {{ homeCtrl.cartIsOpen ? 'Close Cart' : 'Open Cart' }}
-					  <span class="cart-count">{{homeCtrl.cart.length}}</span>
+					  <span class="cart-count">{{homeCtrl.cartTotalQuantity()}}</span>
 					</button>
 				  </div> 
 				  <div class="panel-body table-responsive" ng-show="homeCtrl.cartIsOpen"> 
@@ -35,17 +35,20 @@
 						</tr> 
 					  </thead> 
 					  <tbody> 
-						<tr ng-repeat="product in homeCtrl.cart"> 
+						<tr ng-repeat="product in homeCtrl.cartData"> 
 						  <td>{{product.name}}</td> 
 						  <td>${{product.price}}</td> 
-						  <td><input type="number" ng-model="product.quantity" min="1" max="100"></td> 
+						  <td><input type="number" ng-model="product.quantity" ng-change="addToCart(product)" min="1" max="100"></td> 
 						  <td><button type="button" ng-click = "homeCtrl.removeProduct(product)" class="btn bnt-danger">X</button></td> 
 						</tr> 
 						<tr ng-init = "homeCtrl.cartTotal()"> 
 						  <td align="right">Total</td> 
 						  <td>${{homeCtrl.cartTotal()}}</td> 
 						  <td><button id="btn-buy" ng-click="homeCtrl.buyOrder()">Buy Now</button></td> 
-						</tr> 
+						</tr>
+						<div ng-show="homeCtrl.clearCart">
+							<i class="fa fa-spinner fa-spin"></i> Clearing cart...
+						  </div>
 					  </tbody> 
 					</table> 
 				  </div> 
@@ -53,4 +56,4 @@
 			  </div>
 
 
-	
+		

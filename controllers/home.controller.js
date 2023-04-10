@@ -1,112 +1,75 @@
 angular.module('webshop').controller('homeController', homeController);
 
-homeController.$inject = ['$http', 'CartService', '$timeout'];
+homeController.$inject = ['$http', 'CartService'];
 
-function homeController($http, CartService, $timeout) {
+function homeController($http, CartService) {
 	var vm = this;
 	vm.searchTerm = ''; // searchTerm for searching products
 	vm.cartIsOpen = false;
 	vm.toggleCart = toggleCart;
 	vm.addtoCart = addtoCart;
 	vm.cartTotal = cartTotal;
+	vm.cartTotalQuantity = cartTotalQuantity;
 	vm.removeProduct = removeProduct;
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
+	vm.clearCart = false;
 
 	function toggleCart() {
 		vm.cartIsOpen = !vm.cartIsOpen;
 	}
 
-	CartService.getCartData().then(function (cart) {
-		vm.cart = cart;
+	CartService.getCartData().then(function (cartData) {
+		vm.cartData = cartData;
 	});
 
-	$http.get('http://localhost:3000/products').then(function (response) {
-		vm.products = response.data;
-		console.log(vm.products);
+	CartService.getProducts().then(function (products) {
+		vm.products = products;
 	});
-
 	function addtoCart(product) {
-		try {
-			if (!product) throw 'Please select a product.';
-			var existingProduct = vm.cart.find(function (item) {
-				return item.id === product.id;
-			});
-			if (existingProduct) {
-				existingProduct.quantity++;
-				CartService.updateCart(existingProduct);
-			} else {
-				product.quantity = 1;
-				CartService.saveCartData(product)
-					.then(function () {
-						vm.cart.push(product);
-					})
-					.catch(function () {
-						console.log('Error');
-					});
-			}
-		} catch (error) {
-			console.error(error);
-		}
-	}
+        CartService.addtoCart(product).then(function(response) {
+            console.log(response);
+        });
+    };
+	function buyOrder() {
+		CartService.buyOrder().then(function(response) {
+		  console.log(response);
+		  CartService.getCartData().then(function (cartData) {
+			vm.cartData = cartData;
+		  });
+		});
+	  }
+	  
 
 	function cartTotal() {
 		var totalPrice = 0;
-		angular.forEach(vm.cart, function (product) {
+		angular.forEach(vm.cartData, function (product) {
 			totalPrice += product.price * product.quantity;
 		});
 		return totalPrice;
 	}
 
-	function removeProduct(cart) {
-		try {
-			if (!cart) throw 'Product not found.';
-			CartService.deleteProduct(cart.id).then(function () {
-				vm.cart = vm.cart.filter(function (c) {
-					return c.id !== cart.id;
-				});
-			});
-			console.log(cart);
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
-	function buyOrder() {
-		
-			// var orderProducts = [];
-
-			// angular.forEach(vm.cart, function (product) {
-			// 	orderProducts.push({
-			// 		id: product.id,
-			// 		name: product.name,
-			// 		price: product.price,
-			// 		quantity: product.quantity
-			// 	});
-			// });
-
-			// var order = {
-			// 	products: orderProducts,
-			// 	total: vm.cartTotal()
-			// };
-			// $http.post("http://localhost:3000/orders", order).then(function (response) {
-     		// 	 alert("Order successful!");
-    		// });
-			for (let i = vm.cart.length - 1; i >= 0; i--) {
-				$timeout(function () {
-					$http
-						.delete('http://localhost:3000/cart/' + vm.cart[i].id)
-						.then(function (response) {})
-						.catch(function (error) {
-							console.log(error);
-						});
-				}, 500 * i);
-			}
-			$timeout(function () {
-				vm.cart = [];
-			}, 500 * vm.cart.length + 500);
-		}
-
+	function cartTotalQuantity() {
+		var totalQuantity = 0;
+		angular.forEach(vm.cartData, function (product) {
+			totalQuantity += product.quantity;
+		});
+		return totalQuantity;
+	};
+	function removeProduct (cartData) {
+        $http;
+        CartService.deleteProduct(cartData.id).then(function (response) {
+                var index = vm.cartData.findIndex(function (item) {
+                    return item.id === cartData.id;
+                });
+                vm.cartData.splice(index, 1);
+                console.log('Successfully deleted item with id:', cartData.id);
+            })
+            .catch(function (error) {
+                console.log(error);
+                console.log(cartData.id);
+            });
+    };
 	function filterProducts(product) {
 		return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
 	}
