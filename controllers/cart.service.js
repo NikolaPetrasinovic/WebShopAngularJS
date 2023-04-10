@@ -102,24 +102,21 @@ function CartService($http, $timeout) {
 			}
 		});
 	}
+	// function removeProduct (cartData) {
+    //     $http;
+    //     CartService.deleteProduct(cartData.id).then(function (response) {
+    //             var index = vm.cartData.findIndex(function (item) {
+    //                 return item.id === cartData.id;
+    //             });
+    //             vm.cartData.splice(index, 1);
+    //             console.log('Successfully deleted item with id:', cartData.id);
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //             console.log(cartData.id);
+    //         });
+    // };
 
-	// function buyOrder() {
-	// 	vm.clearCart = true;
-	// 	for (let i = cartData.length - 1; i >= 0; i--) {
-	// 		$timeout(function () {
-	// 			$http
-	// 				.delete('http://localhost:3000/cart/' + cartData[i].id)
-	// 				.then(function (response) {})
-	// 				.catch(function (error) {
-	// 					console.log(error);
-	// 				});
-	// 		}, 500 * i);
-	// 	}
-	// 	$timeout(function () {
-	// 		cartData = [];
-	// 		vm.clearCart = false;
-	// 	}, 500 * cartData.length + 500);
-	// }
 	function buyOrder() {
 		vm.clearCart = true;
 		for (let i = cartData.length - 1; i >= 0; i--) {
@@ -143,27 +140,6 @@ function CartService($http, $timeout) {
 		}, 500 * cartData.length + 500);
 	}
 	
-	// function buyOrder() {
-	// 	vm.clearCart = true;
-	// 	for (let i = cartData.length - 1; i >= 0; i--) {
-	// 		$timeout(function () {
-	// 			$http
-	// 				.delete('http://localhost:3000/cart/' + cartData[i].id)
-	// 				.then(function (response) {})
-	// 				.catch(function (error) {
-	// 					console.log(error);
-	// 				});
-	// 		}, 500 * i);
-	// 	}
-	// 	$timeout(function () {
-	// 		cartData = [];
-	// 		vm.cart = []; // update local cart variable as well
-	// 		vm.clearCart = false;
-	// 	}, 500 * cartData.length + 500);
-	// 	return $timeout(function () {
-	// 		return true;
-	// 	}, 500 * cartData.length + 500);
-	// }
 	
 	return {
 		getProducts: getProducts,

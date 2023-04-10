@@ -13,7 +13,6 @@ function homeController($http, CartService) {
 	vm.removeProduct = removeProduct;
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
-	vm.clearCart = false;
 
 	function toggleCart() {
 		vm.cartIsOpen = !vm.cartIsOpen;
@@ -27,15 +26,16 @@ function homeController($http, CartService) {
 		vm.products = products;
 	});
 	function addtoCart(product) {
-        CartService.addtoCart(product).then(function(response) {
-            console.log(response);
-        });
+        CartService.addtoCart(product)
+		alert("Product added.")
     };
 	function buyOrder() {
+		homeCtrl.buying = true;
 		CartService.buyOrder().then(function(response) {
 		  console.log(response);
 		  CartService.getCartData().then(function (cartData) {
 			vm.cartData = cartData;
+			homeCtrl.buying = false;
 		  });
 		});
 	  }

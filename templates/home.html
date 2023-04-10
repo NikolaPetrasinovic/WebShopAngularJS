@@ -38,7 +38,7 @@
 						<tr ng-repeat="product in homeCtrl.cartData"> 
 						  <td>{{product.name}}</td> 
 						  <td>${{product.price}}</td> 
-						  <td><input type="number" ng-model="product.quantity" ng-change="addToCart(product)" min="1" max="100"></td> 
+						  <td><input type="number" ng-model="product.quantity" ng-change="updateCart(product)" min="1" max="100"></td> 
 						  <td><button type="button" ng-click = "homeCtrl.removeProduct(product)" class="btn bnt-danger">X</button></td> 
 						</tr> 
 						<tr ng-init = "homeCtrl.cartTotal()"> 
@@ -46,9 +46,14 @@
 						  <td>${{homeCtrl.cartTotal()}}</td> 
 						  <td><button id="btn-buy" ng-click="homeCtrl.buyOrder()">Buy Now</button></td> 
 						</tr>
-						<div ng-show="homeCtrl.clearCart">
-							<i class="fa fa-spinner fa-spin"></i> Clearing cart...
-						  </div>
+						<tr ng-show="homeCtrl.clearCart">
+							<td colspan="4">
+							  <div class="text-center">
+								<i class="fa fa-spinner fa-spin"></i> 
+								<span>Loading...</span>
+							  </div>
+							</td>
+						  </tr>
 					  </tbody> 
 					</table> 
 				  </div> 
