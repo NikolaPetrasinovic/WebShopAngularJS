@@ -35,7 +35,7 @@
 						</tr> 
 					  </thead> 
 					  <tbody> 
-						<tr ng-repeat="product in homeCtrl.cart"> 
+						<tr ng-repeat="product in homeCtrl.cartData"> 
 						  <td>{{product.name}}</td> 
 						  <td>${{product.price}}</td> 
 						  <td><input type="number" ng-model="product.quantity" ng-change="addToCart(product)" min="1" max="100"></td> 

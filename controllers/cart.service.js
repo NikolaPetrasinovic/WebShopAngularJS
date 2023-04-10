@@ -32,10 +32,10 @@ function CartService($http, $timeout) {
 			});
 	}
 
-	function saveCartData(cart) {
+	function saveCartData(cartData) {
 		try {
-			if (!cart) throw 'Cart data not found.';
-			return $http.post('http://localhost:3000/cart', cart).then(function (response) {
+			if (!cartData) throw 'Cart data not found.';
+			return $http.post('http://localhost:3000/cart', cartData).then(function (response) {
 				cartData = response.data;
 			});
 		} catch (error) {
@@ -142,6 +142,28 @@ function CartService($http, $timeout) {
 			return true;
 		}, 500 * cartData.length + 500);
 	}
+	
+	// function buyOrder() {
+	// 	vm.clearCart = true;
+	// 	for (let i = cartData.length - 1; i >= 0; i--) {
+	// 		$timeout(function () {
+	// 			$http
+	// 				.delete('http://localhost:3000/cart/' + cartData[i].id)
+	// 				.then(function (response) {})
+	// 				.catch(function (error) {
+	// 					console.log(error);
+	// 				});
+	// 		}, 500 * i);
+	// 	}
+	// 	$timeout(function () {
+	// 		cartData = [];
+	// 		vm.cart = []; // update local cart variable as well
+	// 		vm.clearCart = false;
+	// 	}, 500 * cartData.length + 500);
+	// 	return $timeout(function () {
+	// 		return true;
+	// 	}, 500 * cartData.length + 500);
+	// }
 	
 	return {
 		getProducts: getProducts,

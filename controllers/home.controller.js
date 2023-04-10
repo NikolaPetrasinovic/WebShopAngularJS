@@ -19,8 +19,8 @@ function homeController($http, CartService) {
 		vm.cartIsOpen = !vm.cartIsOpen;
 	}
 
-	CartService.getCartData().then(function (cart) {
-		vm.cart = cart;
+	CartService.getCartData().then(function (cartData) {
+		vm.cartData = cartData;
 	});
 
 	CartService.getProducts().then(function (products) {
@@ -31,17 +31,19 @@ function homeController($http, CartService) {
             console.log(response);
         });
     };
-
 	function buyOrder() {
 		CartService.buyOrder().then(function(response) {
-			console.log(response);
-			vm.cart = [];
+		  console.log(response);
+		  CartService.getCartData().then(function (cartData) {
+			vm.cartData = cartData;
+		  });
 		});
-	}
+	  }
+	  
 
 	function cartTotal() {
 		var totalPrice = 0;
-		angular.forEach(vm.cart, function (product) {
+		angular.forEach(vm.cartData, function (product) {
 			totalPrice += product.price * product.quantity;
 		});
 		return totalPrice;
@@ -49,81 +51,25 @@ function homeController($http, CartService) {
 
 	function cartTotalQuantity() {
 		var totalQuantity = 0;
-		angular.forEach(vm.cart, function (product) {
+		angular.forEach(vm.cartData, function (product) {
 			totalQuantity += product.quantity;
 		});
 		return totalQuantity;
 	};
-
-	// function removeProduct(cart) {
-	// 	try {
-	// 		if (!cart) throw 'Product not found.';
-	// 		CartService.deleteProduct(cart.id).then(function () {
-	// 			vm.cart = vm.cart.filter(function (c) {
-	// 				return c.id !== cart.id;
-	// 			});
-	// 		});
-	// 		console.log(cart);
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// }
-	function removeProduct (cart) {
+	function removeProduct (cartData) {
         $http;
-        CartService.deleteProduct(cart.id).then(function (response) {
-                var index = vm.cart.findIndex(function (item) {
-                    return item.id === cart.id;
+        CartService.deleteProduct(cartData.id).then(function (response) {
+                var index = vm.cartData.findIndex(function (item) {
+                    return item.id === cartData.id;
                 });
-                vm.cart.splice(index, 1);
-                console.log('Successfully deleted item with id:', cart.id);
+                vm.cartData.splice(index, 1);
+                console.log('Successfully deleted item with id:', cartData.id);
             })
             .catch(function (error) {
                 console.log(error);
-                console.log(cart.id);
+                console.log(cartData.id);
             });
     };
-
-	// function buyOrder() {
-	// 		vm.clearCart = true;
-	// 		for (let i = vm.cart.length - 1; i >= 0; i--) {
-	// 			$timeout(function () {
-	// 				$http
-	// 					.delete('http://localhost:3000/cart/' + vm.cart[i].id)
-	// 					.then(function (response) {})
-	// 					.catch(function (error) {
-	// 						console.log(error);
-	// 					});
-	// 			}, 500 * i);
-	// 		}
-	// 		$timeout(function () {
-	// 			vm.cart = [];
-	// 			vm.clearCart = false;
-	// 		}, 500 * vm.cart.length + 500);
-	// 	}
-
-		// function buyOrder() {
-		// 	vm.clearCart = true;
-		// 	for (let i = vm.cart.length - 1; i >= 0; i--) {
-		// 		$timeout(function () {
-		// 			$http
-		// 				.delete('http://localhost:3000/cart/' + vm.cart[i].id)
-		// 				.then(function (response) {
-		// 					var index = vm.cart.findIndex(function (item) {
-		// 						return item.id === vm.cart[i].id;
-		// 					});
-		// 					vm.cart.splice(index, 1);
-		// 					console.log('Successfully deleted item with id:', vm.cart[i].id);
-		// 				})
-		// 				.catch(function (error) {
-		// 					console.log(error);
-		// 				});
-		// 		}, 500 * i);
-		// 	}
-		// 	$timeout(function () {
-		// 		vm.clearCart = false;
-		// 	}, 500 * vm.cart.length + 500);
-		// }
-
 	function filterProducts(product) {
 		return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
 	}
