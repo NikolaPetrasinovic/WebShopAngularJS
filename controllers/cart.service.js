@@ -104,7 +104,7 @@ function CartService($http, $timeout) {
 	}
 	// function removeProduct (cartData) {
     //     $http;
-    //     deleteProduct(cartData.id).then(function (response) {
+    //     CartService.deleteProduct(cartData.id).then(function (response) {
     //             var index = vm.cartData.findIndex(function (item) {
     //                 return item.id === cartData.id;
     //             });
@@ -118,19 +118,18 @@ function CartService($http, $timeout) {
     // };
 
 	function removeProduct(product, cartData) {
-		$http;
-		Service
-			.deleteProduct(cartData)
+		$http
+			deleteProduct(product.id)
 			.then(function (response) {
 				var index = cartData.findIndex(function (item) {
-					return item.id === cartData.id;
+					return item.id === product.id;
 				});
 				cartData.splice(index, 1);
-				console.log('Successfully deleted item with id:', cartData.id);
+				console.log('Successfully deleted item with id:', product.id);
 			})
 			.catch(function (error) {
 				console.log(error);
-				console.log(cartData.id);
+				console.log(product.id);
 			});
 	}
 	function buyOrder() {
