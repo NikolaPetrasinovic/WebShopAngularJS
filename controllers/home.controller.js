@@ -13,8 +13,9 @@ function homeController($http, CartService) {
 	vm.removeProduct = removeProduct;
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
+	vm.updateQuantity = updateQuantity;
 	vm.clearingCart = false;
-
+	
 	function removeProduct(product){
 		CartService.removeProduct(product, vm.cartData);
 	}
@@ -43,6 +44,20 @@ function homeController($http, CartService) {
 		  });
 		});
 	  }
+
+	  function updateQuantity(product) {
+		CartService.updateCart(product).then(function(response) {
+		  for (var i = 0; i < vm.cartData.length; i++) {
+			if (vm.cartData[i].id === product.id) {
+			  vm.cartData[i].quantity = product.quantity;
+			  break;
+			}
+		  }
+		}).catch(function(error) {
+		  console.error('Error updating cart:', error);
+		});
+	  }
+	
 	  
 
 	function cartTotal() {
