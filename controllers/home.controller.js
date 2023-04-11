@@ -13,8 +13,12 @@ function homeController($http, CartService) {
 	vm.removeProduct = removeProduct;
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
-	vm.clearCart = false;
-
+	vm.updateQuantity = updateQuantity;
+	vm.clearingCart = false;
+	
+	function removeProduct(product){
+		CartService.removeProduct(product, vm.cartData);
+	}
 	function toggleCart() {
 		vm.cartIsOpen = !vm.cartIsOpen;
 	}
@@ -27,18 +31,33 @@ function homeController($http, CartService) {
 		vm.products = products;
 	});
 	function addtoCart(product) {
-        CartService.addtoCart(product).then(function(response) {
-            console.log(response);
-        });
+        CartService.addtoCart(product)
+		alert("Product added.")
     };
 	function buyOrder() {
+		vm.clearingCart = true;
 		CartService.buyOrder().then(function(response) {
 		  console.log(response);
 		  CartService.getCartData().then(function (cartData) {
 			vm.cartData = cartData;
+			vm.clearingCart = false;
 		  });
 		});
 	  }
+
+	  function updateQuantity(product) {
+		CartService.updateCart(product).then(function(response) {
+		  for (var i = 0; i < vm.cartData.length; i++) {
+			if (vm.cartData[i].id === product.id) {
+			  vm.cartData[i].quantity = product.quantity;
+			  break;
+			}
+		  }
+		}).catch(function(error) {
+		  console.error('Error updating cart:', error);
+		});
+	  }
+	
 	  
 
 	function cartTotal() {
@@ -56,20 +75,20 @@ function homeController($http, CartService) {
 		});
 		return totalQuantity;
 	};
-	function removeProduct (cartData) {
-        $http;
-        CartService.deleteProduct(cartData.id).then(function (response) {
-                var index = vm.cartData.findIndex(function (item) {
-                    return item.id === cartData.id;
-                });
-                vm.cartData.splice(index, 1);
-                console.log('Successfully deleted item with id:', cartData.id);
-            })
-            .catch(function (error) {
-                console.log(error);
-                console.log(cartData.id);
-            });
-    };
+	// function removeProduct (cartData) {
+    //     $http;
+    //     CartService.deleteProduct(cartData.id).then(function (response) {
+    //             var index = vm.cartData.findIndex(function (item) {
+    //                 return item.id === cartData.id;
+    //             });
+    //             vm.cartData.splice(index, 1);
+    //             console.log('Successfully deleted item with id:', cartData.id);
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //             console.log(cartData.id);
+    //         });
+    // };
 	function filterProducts(product) {
 		return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
 	}
