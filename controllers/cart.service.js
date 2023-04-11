@@ -133,7 +133,6 @@ function CartService($http, $timeout) {
 			});
 	}
 	function buyOrder() {
-		vm.clearCart = true;
 		for (let i = cartData.length - 1; i >= 0; i--) {
 			$timeout(function () {
 				$http
@@ -146,7 +145,6 @@ function CartService($http, $timeout) {
 		}
 		$timeout(function () {
 			cartData = [];
-			vm.clearCart = false;
 		}, 500 * cartData.length + 500);
 
 		// return the promise to be resolved in homeController

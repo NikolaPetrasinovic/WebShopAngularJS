@@ -13,6 +13,7 @@ function homeController($http, CartService) {
 	vm.removeProduct = removeProduct;
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
+	vm.clearingCart = false;
 
 	function removeProduct(product){
 		CartService.removeProduct(product, vm.cartData);
@@ -33,12 +34,12 @@ function homeController($http, CartService) {
 		alert("Product added.")
     };
 	function buyOrder() {
-		homeCtrl.buying = true;
+		vm.clearingCart = true;
 		CartService.buyOrder().then(function(response) {
 		  console.log(response);
 		  CartService.getCartData().then(function (cartData) {
 			vm.cartData = cartData;
-			homeCtrl.buying = false;
+			vm.clearingCart = false;
 		  });
 		});
 	  }
