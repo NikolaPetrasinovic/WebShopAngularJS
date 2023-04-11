@@ -14,6 +14,9 @@ function homeController($http, CartService) {
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
 
+	function removeProduct(product){
+		CartService.removeProduct(product, cartData);
+	}
 	function toggleCart() {
 		vm.cartIsOpen = !vm.cartIsOpen;
 	}

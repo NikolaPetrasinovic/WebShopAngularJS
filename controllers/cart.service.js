@@ -102,21 +102,23 @@ function CartService($http, $timeout) {
 			}
 		});
 	}
-	// function removeProduct (cartData) {
-    //     $http;
-    //     CartService.deleteProduct(cartData.id).then(function (response) {
-    //             var index = vm.cartData.findIndex(function (item) {
-    //                 return item.id === cartData.id;
-    //             });
-    //             vm.cartData.splice(index, 1);
-    //             console.log('Successfully deleted item with id:', cartData.id);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //             console.log(cartData.id);
-    //         });
-    // };
 
+	function removeProduct(product, cartData) {
+		$http;
+		Service
+			.deleteProduct(product)
+			.then(function (response) {
+				var index = cartData.findIndex(function (item) {
+					return item.id === product.id;
+				});
+				cartData.splice(index, 1);
+				console.log('Successfully deleted item with id:', product);
+			})
+			.catch(function (error) {
+				console.log(error);
+				console.log(product.id);
+			});
+	}
 	function buyOrder() {
 		vm.clearCart = true;
 		for (let i = cartData.length - 1; i >= 0; i--) {
@@ -148,6 +150,7 @@ function CartService($http, $timeout) {
 		deleteProduct: deleteProduct,
 		updateCart: updateCart,
 		addtoCart: addtoCart,
-		buyOrder: buyOrder
+		buyOrder: buyOrder,
+		removeProduct: removeProduct
 	};
 }
