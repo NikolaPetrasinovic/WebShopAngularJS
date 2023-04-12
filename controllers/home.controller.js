@@ -75,20 +75,6 @@ function homeController($http, CartService) {
 		});
 		return totalQuantity;
 	};
-	// function removeProduct (cartData) {
-    //     $http;
-    //     CartService.deleteProduct(cartData.id).then(function (response) {
-    //             var index = vm.cartData.findIndex(function (item) {
-    //                 return item.id === cartData.id;
-    //             });
-    //             vm.cartData.splice(index, 1);
-    //             console.log('Successfully deleted item with id:', cartData.id);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //             console.log(cartData.id);
-    //         });
-    // };
 	function filterProducts(product) {
 		return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
 	}
