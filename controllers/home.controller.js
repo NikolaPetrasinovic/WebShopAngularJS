@@ -90,6 +90,11 @@ function homeController($http, CartService) {
     //         });
     // };
 	function filterProducts(product) {
-		return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
+		try {
+			return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
+		} catch (error) {
+			console.error('Error in filterProducts:', error);
+			return false;
+		}
 	}
 }
