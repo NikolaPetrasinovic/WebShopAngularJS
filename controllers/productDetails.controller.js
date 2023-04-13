@@ -1,10 +1,11 @@
 angular.module('webshop').controller('productDetailsController', productDetails);
 
-productDetails.$inject = ['$http', '$stateParams', 'CartService'];
+productDetails.$inject = ['$http', '$stateParams', 'CartService','$timeout'];
 
-function productDetails($http, $stateParams, CartService) {
+function productDetails($http, $stateParams, CartService , $timeout) {
 	var vm = this;
 	vm.addToCart = addtoCart;
+	vm.productAdded = false;
 	vm.initCart = function () {
 		vm.cart = CartService.getCartData();
 	};
@@ -20,7 +21,10 @@ function productDetails($http, $stateParams, CartService) {
 	function addtoCart(product) {
         CartService.addtoCart(product).then(function(response) {
             console.log(response);
-			alert("Product added.")
+			vm.productAdded = true;
+			$timeout(function() { 
+				vm.productAdded = false;
+			  }, 1000);
         });
     };
 
