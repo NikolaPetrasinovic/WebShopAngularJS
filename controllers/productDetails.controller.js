@@ -6,7 +6,7 @@ function productDetails($http, $stateParams, CartService) {
 	var vm = this;
 	vm.addToCart = addtoCart;
 	vm.initCart = function () {
-		vm.cart = CartService.getCartData();
+		vm.cart = CartService.saveCartData();
 	};
 
 	$http({
