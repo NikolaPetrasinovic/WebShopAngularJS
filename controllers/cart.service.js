@@ -6,6 +6,19 @@ function CartService($http, $timeout) {
 	var vm = this;
 	var cartData = [];
 
+	var service = {
+		getProducts: getProducts,
+		getCartData: getCartData,
+		saveCartData: saveCartData,
+		deleteProduct: deleteProduct,
+		updateCart: updateCart,
+		addtoCart: addtoCart,
+		buyOrder: buyOrder,
+		removeProduct: removeProduct
+	};
+
+	return service;
+
 	function getProducts() {
 		return $http
 			.get('http://localhost:3000/products')
@@ -154,14 +167,14 @@ function CartService($http, $timeout) {
 	}
 	
 	
-	return {
-		getProducts: getProducts,
-		getCartData: getCartData,
-		saveCartData: saveCartData,
-		deleteProduct: deleteProduct,
-		updateCart: updateCart,
-		addtoCart: addtoCart,
-		buyOrder: buyOrder,
-		removeProduct: removeProduct
-	};
+	// return {
+	// 	getProducts: getProducts,
+	// 	getCartData: getCartData,
+	// 	saveCartData: saveCartData,
+	// 	deleteProduct: deleteProduct,
+	// 	updateCart: updateCart,
+	// 	addtoCart: addtoCart,
+	// 	buyOrder: buyOrder,
+	// 	removeProduct: removeProduct
+	// };
 }
