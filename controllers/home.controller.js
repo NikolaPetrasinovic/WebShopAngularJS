@@ -14,6 +14,7 @@ function homeController($http, CartService) {
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
 	vm.updateQuantity = updateQuantity;
+	vm.sortProducts = sortProducts;
 	vm.clearingCart = false;
 	
 	function removeProduct(product){
@@ -57,9 +58,53 @@ function homeController($http, CartService) {
 		  console.error('Error updating cart:', error);
 		});
 	  }
-	
-	  
 
+function sortProducts () {
+	var sortType = vm.sortType; // get the sort type from user input
+	switch(sortType) {
+	  case 'alpha':
+		vm.products.sort(function(a, b) {
+		  var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+		  var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+		  if (nameA < nameB) {
+			return -1;
+		  }
+		  if (nameA > nameB) {
+			return 1;
+		  }
+		  // names must be equal
+		  return 0;
+		});
+		break;
+	  case 'alphaReverse':
+		vm.products.sort(function(a, b) {
+		  var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+		  var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+		  if (nameA > nameB) {
+			return -1;
+		  }
+		  if (nameA < nameB) {
+			return 1;
+		  }
+		  // names must be equal
+		  return 0;
+		});
+		break;
+	  case 'price':
+		vm.products.sort(function(a, b) {
+		  return a.price - b.price;
+		});
+		break;
+	  case 'priceReverse':
+		vm.products.sort(function(a, b) {
+		  return b.price - a.price;
+		});
+		break;
+	  default:
+		break;
+	}
+  }
+  
 	function cartTotal() {
 		var totalPrice = 0;
 		angular.forEach(vm.cartData, function (product) {
@@ -75,20 +120,6 @@ function homeController($http, CartService) {
 		});
 		return totalQuantity;
 	};
-	// function removeProduct (cartData) {
-    //     $http;
-    //     CartService.deleteProduct(cartData.id).then(function (response) {
-    //             var index = vm.cartData.findIndex(function (item) {
-    //                 return item.id === cartData.id;
-    //             });
-    //             vm.cartData.splice(index, 1);
-    //             console.log('Successfully deleted item with id:', cartData.id);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //             console.log(cartData.id);
-    //         });
-    // };
 	function filterProducts(product) {
 		return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
 	}

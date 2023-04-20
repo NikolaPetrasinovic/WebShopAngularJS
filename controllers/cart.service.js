@@ -18,7 +18,7 @@ function CartService($http, $timeout) {
 	};
 
 	return service;
-
+	
 	function getProducts() {
 		return $http
 			.get('http://localhost:3000/products')
@@ -115,20 +115,6 @@ function CartService($http, $timeout) {
 			}
 		});
 	}
-	// function removeProduct (cartData) {
-    //     $http;
-    //     CartService.deleteProduct(cartData.id).then(function (response) {
-    //             var index = vm.cartData.findIndex(function (item) {
-    //                 return item.id === cartData.id;
-    //             });
-    //             vm.cartData.splice(index, 1);
-    //             console.log('Successfully deleted item with id:', cartData.id);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //             console.log(cartData.id);
-    //         });
-    // };
 
 	function removeProduct(product, cartData) {
 		$http
@@ -165,16 +151,4 @@ function CartService($http, $timeout) {
 			return true;
 		}, 500 * cartData.length + 500);
 	}
-	
-	
-	// return {
-	// 	getProducts: getProducts,
-	// 	getCartData: getCartData,
-	// 	saveCartData: saveCartData,
-	// 	deleteProduct: deleteProduct,
-	// 	updateCart: updateCart,
-	// 	addtoCart: addtoCart,
-	// 	buyOrder: buyOrder,
-	// 	removeProduct: removeProduct
-	// };
 }
