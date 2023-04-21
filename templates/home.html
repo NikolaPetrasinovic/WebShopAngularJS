@@ -1,62 +1,66 @@
 <div class="container">
-		<div class="row">
-			<h3 class="text-primary">AngularJS Web Shop</h3>
-			<hr style="border-top:1px dotted #ccc;">
-			<div id="bg-background" class="col-8">
-				<h4>PRODUCTS</h4>
-				<hr style="border-top:1px groovy #ccc;">
-				<input type="text" ng-model="homeCtrl.searchTerm" class="form-control" placeholder="Search">
-				<div id="product">
-					<div id="p_list" ng-repeat="product in homeCtrl.products | filter:homeCtrl.filterProducts">
-						<span style="font-size:16px;" ui-sref="ProductDetails({id:product.id})">{{product.name}}</span>
-						<center><img id="img" ui-sref="ProductDetails({id:product.id})" ng-src="{{product.image}}"></center>
-						<div><label style="font-size:14px;">Price: ${{product.price}}</label></div>
-						<center><button type="button" id="addtocart" class="btn btn-primary" ng-click="homeCtrl.addtoCart(product)">Add to cart</button></center>
-					</div>
+	<div class="row">
+		<h3 class="text-primary">AngularJS Web Shop</h3>
+		<hr style="border-top: 1px dotted #ccc" />
+		<div id="bg-background" class="col-8">
+			<h4>PRODUCTS</h4>
+			<hr style="border-top: 1px groovy #ccc" />
+			<input type="text" ng-model="homeCtrl.searchTerm" class="form-control" placeholder="Search" />
+			<select ng-model="homeCtrl.sortType" ng-change="homeCtrl.sortProducts()">
+				<option value="alpha">Alphabetical asc</option>
+				<option value="alphaReverse">Alphabetical desc</option>
+				<option value="price">Price (Low to High)</option>
+				<option value="priceReverse">Price (High to Low)</option>
+			</select>
+			<div id="product">
+				<div id="p_list" ng-repeat="product in homeCtrl.products | filter:homeCtrl.filterProducts">
+					<span style="font-size: 16px" ui-sref="ProductDetails({id:product.id})">{{product.name}}</span>
+					<center><img id="img" ui-sref="ProductDetails({id:product.id})" ng-src="{{product.image}}" /></center>
+					<div><label style="font-size: 14px">Price: ${{product.price}}</label></div>
+					<center><button type="button" id="addtocart" class="btn btn-primary" ng-click="homeCtrl.addtoCart(product)">Add to cart</button></center>
 				</div>
 			</div>
-			
-			<div class="col-4"> 
-				<div class="panel panel-primary"> 
-				  <div class="panel-heading"> 
+		</div>
+
+		<div class="col-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
 					<h5>MY CART</h5>
 					<button id="btnopen" class="btn btn-primary float-right" ng-click="homeCtrl.toggleCart()">
-					  {{ homeCtrl.cartIsOpen ? 'Close Cart' : 'Open Cart' }}
-					  <span class="cart-count">{{homeCtrl.cartTotalQuantity()}}</span>
+						{{ homeCtrl.cartIsOpen ? 'Close Cart' : 'Open Cart' }}
+						<span class="cart-count">{{homeCtrl.cartTotalQuantity()}}</span>
 					</button>
-				  </div> 
-				  <div class="panel-body table-responsive" ng-show="homeCtrl.cartIsOpen"> 
-					<table class="table"> 
-					  <thead> 
-						<tr> 
-						  <th>Product</th> 
-						  <th>Price</th> 
-						  <th></th> 
-						</tr> 
-					  </thead> 
-					  <tbody ng-show="homeCtrl.clearingCart">
-						<tr>
-							<td colspan="4" class="text-center"><i class="fa fa-spinner fa-spin"></i> Clearing cart...</td>
-						</tr>
-					</tbody>
-					  <tbody> 
-						<tr ng-repeat="product in homeCtrl.cartData"> 
-						  <td>{{product.name}}</td> 
-						  <td>${{product.price}}</td> 
-						  <td><input type="number" ng-model="product.quantity" ng-change="homeCtrl.updateQuantity(product)" min="1" max="100"></td> 
-						  <td><button type="button" ng-click = "homeCtrl.removeProduct(product)" class="btn bnt-danger">X</button></td> 
-						</tr> 
-						<tr ng-init = "homeCtrl.cartTotal()"> 
-						  <td align="right">Total</td> 
-						  <td>${{homeCtrl.cartTotal()}}</td> 
-						  <td><button id="btn-buy" ng-click="homeCtrl.buyOrder()">Buy Now</button></td> 
-						</tr>
-						
-					  </tbody> 
-					</table> 
-				  </div> 
-				</div> 
-			  </div>
-
-
-		
+				</div>
+				<div class="panel-body table-responsive" ng-show="homeCtrl.cartIsOpen">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Product</th>
+								<th>Price</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody ng-show="homeCtrl.clearingCart">
+							<tr>
+								<td colspan="4" class="text-center"><i class="fa fa-spinner fa-spin"></i> Clearing cart...</td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr ng-repeat="product in homeCtrl.cartData">
+								<td>{{product.name}}</td>
+								<td>${{product.price}}</td>
+								<td><input type="number" ng-model="product.quantity" ng-change="homeCtrl.updateQuantity(product)" min="1" max="100" /></td>
+								<td><button type="button" ng-click="homeCtrl.removeProduct(product)" class="btn bnt-danger">X</button></td>
+							</tr>
+							<tr ng-init="homeCtrl.cartTotal()">
+								<td align="right">Total</td>
+								<td>${{homeCtrl.cartTotal()}}</td>
+								<td><button id="btn-buy" ng-click="homeCtrl.buyOrder()">Buy Now</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

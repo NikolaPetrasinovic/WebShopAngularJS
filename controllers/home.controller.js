@@ -14,9 +14,10 @@ function homeController($http, CartService) {
 	vm.buyOrder = buyOrder;
 	vm.filterProducts = filterProducts;
 	vm.updateQuantity = updateQuantity;
+	vm.sortProducts = sortProducts;
 	vm.clearingCart = false;
-	
-	function removeProduct(product){
+
+	function removeProduct(product) {
 		CartService.removeProduct(product, vm.cartData);
 	}
 	function toggleCart() {
@@ -31,34 +32,78 @@ function homeController($http, CartService) {
 		vm.products = products;
 	});
 	function addtoCart(product) {
-        CartService.addtoCart(product)
-		alert("Product added.")
-    };
+		CartService.addtoCart(product);
+		alert('Product added.');
+	}
 	function buyOrder() {
 		vm.clearingCart = true;
-		CartService.buyOrder().then(function(response) {
-		  console.log(response);
-		  CartService.getCartData().then(function (cartData) {
-			vm.cartData = cartData;
-			vm.clearingCart = false;
-		  });
+		CartService.buyOrder().then(function (response) {
+			console.log(response);
+			CartService.getCartData().then(function (cartData) {
+				vm.cartData = cartData;
+				vm.clearingCart = false;
+			});
 		});
-	  }
+	}
 
-	  function updateQuantity(product) {
-		CartService.updateCart(product).then(function(response) {
-		  for (var i = 0; i < vm.cartData.length; i++) {
-			if (vm.cartData[i].id === product.id) {
-			  vm.cartData[i].quantity = product.quantity;
-			  break;
-			}
-		  }
-		}).catch(function(error) {
-		  console.error('Error updating cart:', error);
-		});
-	  }
-	
-	  
+	function updateQuantity(product) {
+		CartService.updateCart(product)
+			.then(function (response) {
+				for (var i = 0; i < vm.cartData.length; i++) {
+					if (vm.cartData[i].id === product.id) {
+						vm.cartData[i].quantity = product.quantity;
+						break;
+					}
+				}
+			})
+			.catch(function (error) {
+				console.error('Error updating cart:', error);
+			});
+	}
+
+	function sortProducts() {
+		var sortType = vm.sortType; // get the sort type from user input
+		switch (sortType) {
+			case 'alpha':
+				vm.products.sort(function (a, b) {
+					var nameA = a.name.toUpperCase();
+					var nameB = b.name.toUpperCase();
+					if (nameA < nameB) {
+						return -1;
+					}
+					if (nameA > nameB) {
+						return 1;
+					}
+					return 0;
+				});
+				break;
+			case 'alphaReverse':
+				vm.products.sort(function (a, b) {
+					var nameA = a.name.toUpperCase();
+					var nameB = b.name.toUpperCase();
+					if (nameA > nameB) {
+						return -1;
+					}
+					if (nameA < nameB) {
+						return 1;
+					}
+					return 0;
+				});
+				break;
+			case 'price':
+				vm.products.sort(function (a, b) {
+					return a.price - b.price;
+				});
+				break;
+			case 'priceReverse':
+				vm.products.sort(function (a, b) {
+					return b.price - a.price;
+				});
+				break;
+			default:
+				break;
+		}
+	}
 
 	function cartTotal() {
 		var totalPrice = 0;
