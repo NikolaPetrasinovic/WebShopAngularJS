@@ -18,10 +18,10 @@ function productDetails($http, $stateParams, CartService) {
 	});
 
 	function addtoCart(product) {
-        CartService.addtoCart(product).then(function(response) {
-			alert("Product added.")
-        });
-    };
+		CartService.addtoCart(product).then(function (response) {
+			alert('Product added.');
+		});
+	}
 
 	vm.initCart(); //immediatly after function add to cart, for latest data
 }

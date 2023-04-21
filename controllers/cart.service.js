@@ -18,7 +18,7 @@ function CartService($http, $timeout) {
 	};
 
 	return service;
-	
+
 	function getProducts() {
 		return $http
 			.get('http://localhost:3000/products')
@@ -75,13 +75,13 @@ function CartService($http, $timeout) {
 	}
 
 	function addtoCart(product) {
-		return new Promise(function(resolve, reject) {
+		return new Promise(function (resolve, reject) {
 			if (!Array.isArray(cartData)) {
 				cartData = [];
 			}
 			var existingProduct = cartData.findIndex(function (item) {
 				return item.productID === product.id;
-			}); 
+			});
 			if (existingProduct === -1) {
 				var newObject = {
 					productID: product.id,
@@ -89,25 +89,27 @@ function CartService($http, $timeout) {
 					price: product.price,
 					quantity: product.quantity,
 					imageURL: product.image
-				}; 
+				};
 				var t;
-				$http.post('http://localhost:3000/cart', newObject).then(function (response) {
-					t = response.data.id;
-					t = {
-						productID: product.id,
-						name: product.name,
-						price: product.price,
-						quantity: product.quantity,
-						imageURL: product.image,
-						id: t
-					};
-					cartData.push(t);
-					resolve(cartData);
-				})
-				.catch(function(error) {
-					console.error('Error adding product to cart:', error);
-					reject(error);
-				});
+				$http
+					.post('http://localhost:3000/cart', newObject)
+					.then(function (response) {
+						t = response.data.id;
+						t = {
+							productID: product.id,
+							name: product.name,
+							price: product.price,
+							quantity: product.quantity,
+							imageURL: product.image,
+							id: t
+						};
+						cartData.push(t);
+						resolve(cartData);
+					})
+					.catch(function (error) {
+						console.error('Error adding product to cart:', error);
+						reject(error);
+					});
 			} else {
 				cartData[existingProduct].quantity++;
 				updateCart(cartData[existingProduct]);
@@ -117,8 +119,8 @@ function CartService($http, $timeout) {
 	}
 
 	function removeProduct(product, cartData) {
-		$http
-			deleteProduct(product.id)
+		$http;
+		deleteProduct(product.id)
 			.then(function (response) {
 				var index = cartData.findIndex(function (item) {
 					return item.id === product.id;
