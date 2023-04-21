@@ -12,6 +12,9 @@
            </div>
            <div class="col-md-6 text-center">
              <button type="button" id="addtocart" class="btn btn-primary" ng-click="productDetailsCtrl.addToCart(productDetailsCtrl.product, productDetailsCtrl.quantity)">Add to cart</button>
+             <span ng-show="productDetailsCtrl.productAdded" class="text-success ml-3">
+              Product added!
+            </span>
            </div>
          </div>
        </div>

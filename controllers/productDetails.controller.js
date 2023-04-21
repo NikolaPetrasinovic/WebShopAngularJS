@@ -1,12 +1,13 @@
 angular.module('webshop').controller('productDetailsController', productDetails);
 
-productDetails.$inject = ['$http', '$stateParams', 'CartService'];
+productDetails.$inject = ['$http', '$stateParams', 'CartService','$timeout'];
 
-function productDetails($http, $stateParams, CartService) {
+function productDetails($http, $stateParams, CartService , $timeout) {
 	var vm = this;
 	vm.addToCart = addtoCart;
+	vm.productAdded = false;
 	vm.initCart = function () {
-		vm.cart = CartService.getCartData();
+		vm.cart = CartService.saveCartData();
 	};
 
 	$http({
@@ -18,10 +19,14 @@ function productDetails($http, $stateParams, CartService) {
 	});
 
 	function addtoCart(product) {
-		CartService.addtoCart(product).then(function (response) {
-			alert('Product added.');
-		});
-	}
+        CartService.addcontrollers/productDetails.controller.jstoCart(product).then(function(response) {
+            console.log(response);
+			vm.productAdded = true;
+			$timeout(function() { 
+				vm.productAdded = false;
+			  }, 1000);
+        });
+    };
 
 	vm.initCart(); //immediatly after function add to cart, for latest data
 }
