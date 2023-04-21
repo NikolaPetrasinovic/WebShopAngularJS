@@ -19,7 +19,7 @@ function productDetails($http, $stateParams, CartService , $timeout) {
 	});
 
 	function addtoCart(product) {
-        CartService.addcontrollers/productDetails.controller.jstoCart(product).then(function(response) {
+        CartService.addtoCart(product).then(function(response) {
             console.log(response);
 			vm.productAdded = true;
 			$timeout(function() { 
