@@ -74,22 +74,5 @@
     }
   ],
   "orders": [],
-  "cart": [
-    {
-      "productID": 3,
-      "name": "Galaxy Fold Z",
-      "price": 900,
-      "quantity": 6,
-      "imageURL": "./img/3.jpg",
-      "id": 1
-    },
-    {
-      "productID": 2,
-      "name": "Backpack",
-      "price": 100,
-      "quantity": 3,
-      "imageURL": "./img/2.jpg",
-      "id": 2
-    }
-  ]
+  "cart": []
 }
