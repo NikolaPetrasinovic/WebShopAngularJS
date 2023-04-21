@@ -74,7 +74,7 @@ function homeController($http, CartService) {
 			totalQuantity += product.quantity;
 		});
 		return totalQuantity;
-	};
+	}
 	function filterProducts(product) {
 		try {
 			return vm.searchTerm == '' || product.name.toLowerCase().indexOf(vm.searchTerm.toLowerCase()) !== -1;
