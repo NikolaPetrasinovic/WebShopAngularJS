@@ -19,7 +19,6 @@ function productDetails($http, $stateParams, CartService) {
 
 	function addtoCart(product) {
         CartService.addtoCart(product).then(function(response) {
-            console.log(response);
 			alert("Product added.")
         });
     };
