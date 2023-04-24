@@ -130,7 +130,6 @@ function CartService($http, $timeout) {
 			})
 			.catch(function (error) {
 				console.log(error);
-				console.log(product.id);
 			});
 	}
 	function buyOrder() {

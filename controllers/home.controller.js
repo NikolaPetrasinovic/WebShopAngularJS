@@ -38,7 +38,6 @@ function homeController($http, CartService) {
 	function buyOrder() {
 		vm.clearingCart = true;
 		CartService.buyOrder().then(function (response) {
-			console.log(response);
 			CartService.getCartData().then(function (cartData) {
 				vm.cartData = cartData;
 				vm.clearingCart = false;
