@@ -7,7 +7,7 @@ function productDetails($http, $stateParams, CartService , $timeout) {
 	vm.addToCart = addtoCart;
 	vm.productAdded = false;
 	vm.initCart = function () {
-		vm.cart = CartService.saveCartData();
+		vm.cart = CartService.getCartData();
 	};
 
 	$http({
