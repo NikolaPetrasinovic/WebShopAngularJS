@@ -5,14 +5,14 @@
        <div id="product" class="bg-white p-4 rounded shadow">
          <div class="row align-items-center">
            <div class="col-md-6 text-center">
-             <h4>{{productDetailsCtrl.product.name}}</h4>
-             <img id="img" class="img-fluid rounded" ng-src="{{productDetailsCtrl.product.image}}">
-             <p id="desc">Description: {{productDetailsCtrl.product.description}}</p>
-             <p class="my-4 h4">${{productDetailsCtrl.product.price}}</p>
+             <h4>{{vm.product.name}}</h4>
+             <img id="img" class="img-fluid rounded" ng-src="{{vm.product.image}}">
+             <p id="desc">Description: {{vm.product.description}}</p>
+             <p class="my-4 h4">${{vm.product.price}}</p>
            </div>
            <div class="col-md-6 text-center">
-             <button type="button" id="addtocart" class="btn btn-primary" ng-click="productDetailsCtrl.addToCart(productDetailsCtrl.product, productDetailsCtrl.quantity)">Add to cart</button>
-             <span ng-show="productDetailsCtrl.productAdded" class="text-success ml-3">
+             <button type="button" id="addtocart" class="btn btn-primary" ng-click="vm.addToCart(vm.product, vm.quantity)">Add to cart</button>
+             <span ng-show="vm.productAdded" class="text-success ml-3">
               Product added!
             </span>
            </div>
