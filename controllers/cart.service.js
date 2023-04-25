@@ -1,8 +1,8 @@
 angular.module('webshop').factory('CartService', CartService);
 
-CartService.$inject = ['$http', '$timeout'];
+CartService.$inject = ['$http', '$timeout', '$q'];
 
-function CartService($http, $timeout) {
+function CartService($http, $timeout, $q) {
 	var vm = this;
 	var cartData = [];
 
@@ -132,7 +132,11 @@ function CartService($http, $timeout) {
 				console.log(error);
 			});
 	}
+	
 	function buyOrder() {
+		if (cartData.length === 0) {
+			return $q.reject('Cannot buy an empty cart.');
+		}
 		for (let i = cartData.length - 1; i >= 0; i--) {
 			$timeout(function () {
 				$http

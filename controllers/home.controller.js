@@ -35,14 +35,20 @@ function homeController($http, CartService) {
 		CartService.addtoCart(product);
 		alert('Product added.');
 	}
+	
 	function buyOrder() {
 		vm.clearingCart = true;
-		CartService.buyOrder().then(function (response) {
-			CartService.getCartData().then(function (cartData) {
-				vm.cartData = cartData;
+		CartService.buyOrder()
+			.then(function (response) {
+				CartService.getCartData().then(function (cartData) {
+					vm.cartData = cartData;
+					vm.clearingCart = false;
+				});
+			})
+			.catch(function (error) {
+				alert(error);
 				vm.clearingCart = false;
 			});
-		});
 	}
 
 	function updateQuantity(product) {
