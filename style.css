@@ -62,7 +62,14 @@
 #img {
     max-height: 300px;
   }
-  
+#home1{
+  background-color: #7b7b80;
+}
+#home1:hover{
+  background-color: #4991f0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
   #addtocart {
     font-family: Arial, sans-serif;
     border-radius: 5px;
@@ -110,6 +117,8 @@
 
   #desc{
     border: 1px solid #c4bebe;
+    padding: 5px;
+    margin-top: 15px;
   }
   #btnopen{
     position: relative;
@@ -141,4 +150,23 @@
     justify-content: center;
   }
 
+  #btnBack {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #7b7b80;
+  }
   
+  #btnBack:hover{
+    background-color: #4991f0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .fa{
+    margin-right: 15px;
+  }
+
+  #searchProd{
+    margin: 10px;
+  }

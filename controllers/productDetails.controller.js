@@ -24,7 +24,7 @@ function productDetails($http, $stateParams, CartService , $timeout) {
 			vm.productAdded = true;
 			$timeout(function() { 
 				vm.productAdded = false;
-			  }, 1000);
+			  }, 2200);
         });
     };
 
