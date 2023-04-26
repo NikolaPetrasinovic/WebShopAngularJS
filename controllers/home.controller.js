@@ -16,6 +16,7 @@ function homeController($http, CartService) {
 	vm.updateQuantity = updateQuantity;
 	vm.sortProducts = sortProducts;
 	vm.clearingCart = false;
+	vm.messageQuantity = false;
 
 	function removeProduct(product) {
 		CartService.removeProduct(product, vm.cartData);
@@ -52,6 +53,11 @@ function homeController($http, CartService) {
 	}
 
 	function updateQuantity(product) {
+		if (product.quantity == null || product.quantity > 100) {
+            product.quantity = 1;
+            vm.messageQuantity = true;
+		} else {
+			vm.messageQuantity = false;
 		CartService.updateCart(product)
 			.then(function (response) {
 				for (var i = 0; i < vm.cartData.length; i++) {
@@ -64,6 +70,7 @@ function homeController($http, CartService) {
 			.catch(function (error) {
 				console.error('Error updating cart:', error);
 			});
+		}
 	}
 
 	function sortProducts() {
