@@ -50,12 +50,12 @@
 								<td>{{product.name}}</td>
 								<td>${{product.price}}</td>
 								<td><input type="number" ng-model="product.quantity" ng-change="vm.updateQuantity(product)" min="1" max="100" /></td>
-								<td ng-if="vm.messageQuantity"><p>Quantity must be greater than 0, and less than 100</p></td>
 								<td><button type="button" ng-click="vm.removeProduct(product)" class="btn bnt-danger">X</button></td>
 							</tr>
 							<tr ng-init="vm.cartTotal()">
 								<td align="right">Total</td>
 								<td>${{vm.cartTotal()}}</td>
+								<td ng-if="vm.messageQuantity"><p>Quantity must be greater than 0, and less than 100</p></td>
 								<td><button id="btn-buy" ng-click="vm.buyOrder()">Buy Now</button></td>
 							</tr>
 						</tbody>

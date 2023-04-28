@@ -18,6 +18,7 @@
     float:left;
     margin:15px;
 }
+
 #p_list img{
     height:150px; 
     width:150px;
@@ -170,3 +171,28 @@
   #searchProd{
     margin: 10px;
   }
+  select {
+    margin-right: 10px;
+    }
+    
+    .col-md-8 {
+    padding-right: 0;
+    }
+    
+    .col-md-4 {
+    padding-left: 0;
+    }
+    
+    @media (max-width: 768px) {
+    .col-md-8 {
+    padding-right: 10px;
+    }
+    
+    .col-md-4 {
+    padding-left: 10px;
+    }
+    
+    #bg-background {
+    margin-bottom: 10px;
+    }
+    }

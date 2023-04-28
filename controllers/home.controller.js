@@ -54,7 +54,7 @@ function homeController($http, CartService) {
 
 	function updateQuantity(product) {
 		if (product.quantity == null || product.quantity > 100) {
-            product.quantity = 1;
+            product.quantity = '';
             vm.messageQuantity = true;
 		} else {
 			vm.messageQuantity = false;

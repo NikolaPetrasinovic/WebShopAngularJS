@@ -28,6 +28,7 @@ function CartService($http, $timeout, $q) {
 			})
 			.catch(function (error) {
 				console.error(error);
+				alert("Error retrieving products. Please try again later.");
 				throw error;
 			});
 	}
@@ -41,6 +42,7 @@ function CartService($http, $timeout, $q) {
 			})
 			.catch(function (error) {
 				console.error(error);
+				alert("Error retrieving cart data. Please try again later.");
 				throw error;
 			});
 	}
