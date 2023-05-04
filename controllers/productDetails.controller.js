@@ -7,7 +7,7 @@ function productDetails($http, $stateParams, CartService , $timeout) {
 	vm.addToCart = addtoCart;
 	vm.productAdded = false;
 	vm.initCart = function () {
-		vm.cart = CartService.saveCartData();
+		vm.cart = CartService.getCartData();
 	};
 
 	$http({
@@ -24,7 +24,7 @@ function productDetails($http, $stateParams, CartService , $timeout) {
 			vm.productAdded = true;
 			$timeout(function() { 
 				vm.productAdded = false;
-			  }, 1000);
+			  }, 2200);
         });
     };
 

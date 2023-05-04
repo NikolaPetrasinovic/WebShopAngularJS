@@ -74,5 +74,14 @@
     }
   ],
   "orders": [],
-  "cart": []
+  "cart": [
+    {
+      "productID": 3,
+      "name": "Galaxy Fold Z",
+      "price": 900,
+      "quantity": 3,
+      "imageURL": "./img/3.jpg",
+      "id": 1
+    }
+  ]
 }

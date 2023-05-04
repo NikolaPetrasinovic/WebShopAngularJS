@@ -16,6 +16,7 @@ function homeController($http, CartService) {
 	vm.updateQuantity = updateQuantity;
 	vm.sortProducts = sortProducts;
 	vm.clearingCart = false;
+	vm.execute = true;
 
 	function removeProduct(product) {
 		CartService.removeProduct(product, vm.cartData);
@@ -35,31 +36,51 @@ function homeController($http, CartService) {
 		CartService.addtoCart(product);
 		alert('Product added.');
 	}
+	
 	function buyOrder() {
-		vm.clearingCart = true;
-		CartService.buyOrder().then(function (response) {
-			console.log(response);
-			CartService.getCartData().then(function (cartData) {
-				vm.cartData = cartData;
+		if (vm.cartData.length == 0) {
+            alert('Your basket is empty!');
+        } else if (vm.execute == false) {
+            alert('Quantity must be between 1 and 999');
+        } else {
+			vm.clearingCart = true;
+
+		CartService.buyOrder()
+			.then(function (response) {
+				CartService.getCartData().then(function (cartData) {
+					vm.cartData = cartData;
+					vm.clearingCart = false;
+				});
+			})
+			.catch(function (error) {
+				alert(error);
 				vm.clearingCart = false;
 			});
-		});
+		}
 	}
 
 	function updateQuantity(product) {
-		CartService.updateCart(product)
-			.then(function (response) {
-				for (var i = 0; i < vm.cartData.length; i++) {
-					if (vm.cartData[i].id === product.id) {
-						vm.cartData[i].quantity = product.quantity;
-						break;
-					}
-				}
-			})
-			.catch(function (error) {
-				console.error('Error updating cart:', error);
-			});
-	}
+        if (product.quantity < 1 || product.quantity > 999) {
+            vm.messageQuantity = true;
+            vm.execute = false;
+        } else {
+            vm.messageQuantity = false;
+            vm.execute = true;
+        CartService.updateCart(product)
+            .then(function (response) {
+                for (var i = 0; i < vm.cartData.length; i++) {
+                    if (vm.cartData[i].id === product.id) {
+                        vm.cartData[i].quantity = product.quantity;
+                        break;
+                    }
+                }
+            })
+            .catch(function (error) {
+                console.error('Error updating cart:', error);
+            });
+		}
+    }
+	  
 
 	function sortProducts() {
 		var sortType = vm.sortType; // get the sort type from user input
@@ -107,9 +128,13 @@ function homeController($http, CartService) {
 
 	function cartTotal() {
 		var totalPrice = 0;
+		if(vm.execute == true){
 		angular.forEach(vm.cartData, function (product) {
 			totalPrice += product.price * product.quantity;
 		});
+	}else {
+		return total = 0;
+	}
 		return totalPrice;
 	}
 

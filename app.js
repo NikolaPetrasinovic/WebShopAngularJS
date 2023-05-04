@@ -9,13 +9,13 @@ var app = angular.module('webshop', ['ui.router']).config(function ($stateProvid
 				url: '/home',
 				templateUrl: './templates/home.html',
 				controller: 'homeController',
-				controllerAs: 'homeCtrl'
+				controllerAs: 'vm'
 			})
 			.state('ProductDetails', {
 				url: '/productDetails/:id',
 				templateUrl: './templates/productDetails.html',
 				controller: 'productDetailsController',
-				controllerAs: 'productDetailsCtrl'
+				controllerAs: 'vm'
 			});
 		$locationProvider.html5Mode(true);
 	} catch (error) {
