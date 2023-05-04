@@ -89,7 +89,7 @@ function CartService($http, $timeout, $q) {
 					productID: product.id,
 					name: product.name,
 					price: product.price,
-					quantity: product.quantity,
+					quantity: product.quantity > 100 ? 100 : product.quantity,
 					imageURL: product.image
 				};
 				var t;
@@ -101,7 +101,7 @@ function CartService($http, $timeout, $q) {
 							productID: product.id,
 							name: product.name,
 							price: product.price,
-							quantity: product.quantity,
+							quantity: product.quantity > 100 ? 100 : product.quantity,
 							imageURL: product.image,
 							id: t
 						};
@@ -113,7 +113,12 @@ function CartService($http, $timeout, $q) {
 						reject(error);
 					});
 			} else {
-				cartData[existingProduct].quantity++;
+				var newQuantity = cartData[existingProduct].quantity + product.quantity;
+				if (newQuantity > 100) {
+					cartData[existingProduct].quantity = 100;
+				} else {
+					cartData[existingProduct].quantity = newQuantity;
+				}
 				updateCart(cartData[existingProduct]);
 				resolve(cartData);
 			}
